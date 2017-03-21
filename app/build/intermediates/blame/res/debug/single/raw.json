@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "C:\\Users\\ONBmob\\AndroidStudioProjects\\barcode-reader\\app\\build\\intermediates\\res\\merged\\debug\\raw\\shot.ogg",
+        "source": "C:\\Users\\ONBmob\\AndroidStudioProjects\\barcode-reader\\app\\src\\main\\res\\raw\\shot.ogg"
+    },
+    {
+        "merged": "C:\\Users\\ONBmob\\AndroidStudioProjects\\barcode-reader\\app\\build\\intermediates\\res\\merged\\debug\\raw\\task.json",
+        "source": "C:\\Users\\ONBmob\\AndroidStudioProjects\\barcode-reader\\app\\src\\main\\res\\raw\\task.json"
+    },
+    {
+        "merged": "C:\\Users\\ONBmob\\AndroidStudioProjects\\barcode-reader\\app\\build\\intermediates\\res\\merged\\debug\\raw\\explosion.ogg",
+        "source": "C:\\Users\\ONBmob\\AndroidStudioProjects\\barcode-reader\\app\\src\\main\\res\\raw\\explosion.ogg"
+    }
+]
