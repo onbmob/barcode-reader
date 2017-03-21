@@ -33,6 +33,8 @@ import com.google.android.gms.vision.barcode.Barcode;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import static com.google.android.gms.samples.vision.barcodereader.BarcodeCaptureActivity.aCells;
+
 /**
  * Graphic instance for rendering barcode position, size, and ID within an associated graphic
  * overlay view.
@@ -145,14 +147,15 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
      */
     @Override
     public void draw(Canvas canvas) {
-        int bc = 999;
-        JSONObject j = null;
         Barcode barcode = mBarcode;
         if (barcode == null) {
             return;
         }
 
-        if (BarcodeCaptureActivity.route == null || BarcodeCaptureActivity.goods == null) {
+        if (BarcodeCaptureActivity.trays == null
+//              ||  BarcodeCaptureActivity.cells == null
+              ||  BarcodeCaptureActivity.bcPlace == null
+        ) {
             Paint mTextStem = new Paint();
             mTextStem.setColor(Color.RED);
             mTextStem.setTextSize(36.0f);
@@ -160,6 +163,10 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
             Log.d(TAG, "=+=== Нет данных AJAX =====  " + barcode.rawValue);
             return;
         }
+
+
+        int bc = 999;
+        JSONObject j = null;
 
         RectF rect = new RectF(barcode.getBoundingBox());
 
@@ -170,18 +177,26 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
 
         switch (step) {
             case 0:   // Выбираем лоток
-                if (BarcodeCaptureActivity.tray != null && !BarcodeCaptureActivity.tray.isNull(barcode.rawValue)) {
+                if (BarcodeCaptureActivity.trays != null && !BarcodeCaptureActivity.trays.isNull(barcode.rawValue)) {
                     // лоток "наш"
                     try {
-                        sTray = BarcodeCaptureActivity.tray.getString(barcode.rawValue);
+                        sTray = BarcodeCaptureActivity.trays.getString(barcode.rawValue);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
 
                     if (bounce.check(sTray)) { // Поймали
-                        BarcodeCaptureActivity.tvSost.setText("Найдите ячейку");
+                        BarcodeCaptureActivity.tvSost.setText("Подойдите к ячейке");
                         BarcodeCaptureActivity.tvTray.setText(sTray);
-                        BarcodeCaptureActivity.tvTray.setTextColor(Color.GREEN);
+                        BarcodeCaptureActivity.tvTray.setVisibility(View.VISIBLE);
+                        BarcodeCaptureActivity.tvTrayT.setVisibility(View.VISIBLE);
+
+                        try {
+                            JSONObject item0 = BarcodeCaptureActivity.aCells.getJSONObject(0);
+                            BarcodeCaptureActivity.tvNeed.setText(item0.getString("name"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                         mp.start();
                         step = 1;
                         bcTray = barcode.rawValue;
@@ -197,6 +212,7 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
                 }
                 break;
 
+/*
             case 1:   //Распознаем стрелки
                 canvas.drawText(barcode.rawValue, rect.left, rect.bottom, mTextPaint);
                 if (BarcodeCaptureActivity.route != null && !BarcodeCaptureActivity.route.isNull(barcode.rawValue)) {
@@ -303,7 +319,7 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
                                 BarcodeCaptureActivity.tvName.setText(j.getString("name"));
                             if (!j.isNull("quantity")) {
                                 BarcodeCaptureActivity.qNeed.setText("Необходимо " + j.getString("quantity") + " шт.");
-                                needGoods=j.getInt("quantity");
+                                needGoods = j.getInt("quantity");
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -326,7 +342,7 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
                     if (bounce.check(bcTray)) { // Поймали
                         mp.start();
                         countGoods++;
-                        if(countGoods == needGoods){
+                        if (countGoods == needGoods) {
                             step = 5;
                             mp.start();
                             BarcodeCaptureActivity.tvSost.setText("Доставте лоток в зону погрузки.");
@@ -341,7 +357,7 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
                         canvas.drawRect(rect, gRectP);
                         canvas.drawText("Наш лоток " + sTray + bounce.getCount(), rect.left, rect.top - 24, gTxtP);
                     }
-                }else{
+                } else {
                     bounce.reset();
                     canvas.drawRect(rect, mRectPaint);
                     canvas.drawText(barcode.rawValue, rect.left, rect.bottom, mTextPaint);
@@ -356,15 +372,16 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
                         step = 3;
                     } else { // Фильтруем дребезг
                         canvas.drawRect(rect, gRectP);
-                        canvas.drawText("Наш товар"+ bounce.getCount(), rect.left, rect.top - 24, gTxtP);
+                        canvas.drawText("Наш товар" + bounce.getCount(), rect.left, rect.top - 24, gTxtP);
                     }
-                }else{
+                } else {
                     bounce.reset();
                     canvas.drawRect(rect, mRectPaint);
                     canvas.drawText(barcode.rawValue, rect.left, rect.bottom, mTextPaint);
                 }
                 break;
 
+*/
             case 5:  // Выходим в зону погрузки
                 if (BarcodeCaptureActivity.bcPlace.equals(barcode.rawValue)) {
                     if (bounce.check(BarcodeCaptureActivity.bcPlace)) { // Поймали
@@ -373,12 +390,12 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
                         step = 6;
                     } else { // Фильтруем дребезг
                         canvas.drawRect(rect, gRectP);
-                        canvas.drawText("Зона погрузки"+ bounce.getCount(), rect.left, rect.top - 24, gTxtP);
+                        canvas.drawText("Зона погрузки" + bounce.getCount(), rect.left, rect.top - 24, gTxtP);
                     }
-                }else{
+                } else {
                     bounce.reset();
                     canvas.drawRect(rect, mRectPaint);
-                    canvas.drawText(barcode.rawValue, rect.left, rect.bottom, mTextPaint);
+                    canvas.drawText(barcode.rawValue, rect.left, rect.top - 24, mTextPaint);
                 }
                 break;
             default:

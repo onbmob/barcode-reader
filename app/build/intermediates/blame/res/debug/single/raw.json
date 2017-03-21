@@ -4,6 +4,10 @@
         "source": "C:\\Users\\ONBmob\\AndroidStudioProjects\\barcode-reader\\app\\src\\main\\res\\raw\\shot.ogg"
     },
     {
+        "merged": "C:\\Users\\ONBmob\\AndroidStudioProjects\\barcode-reader\\app\\build\\intermediates\\res\\merged\\debug\\raw\\task2.json",
+        "source": "C:\\Users\\ONBmob\\AndroidStudioProjects\\barcode-reader\\app\\src\\main\\res\\raw\\task2.json"
+    },
+    {
         "merged": "C:\\Users\\ONBmob\\AndroidStudioProjects\\barcode-reader\\app\\build\\intermediates\\res\\merged\\debug\\raw\\task.json",
         "source": "C:\\Users\\ONBmob\\AndroidStudioProjects\\barcode-reader\\app\\src\\main\\res\\raw\\task.json"
     },

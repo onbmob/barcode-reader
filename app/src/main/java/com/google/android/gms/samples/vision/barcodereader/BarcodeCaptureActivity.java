@@ -57,6 +57,7 @@ import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -64,9 +65,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Iterator;
 
 /**
  * Activity for the multi-tracker app.  This app detects barcodes and displays the value with the
@@ -102,24 +105,27 @@ public final class BarcodeCaptureActivity extends Activity {
 //    private SurfaceHolder svHolder;
 //    private HolderCallback svHolderCallback;
 
-    public static RelativeLayout lLay;
-    public static RelativeLayout lLay2;
+    static RelativeLayout lLay;
+    static RelativeLayout lLay2;
 
-//    public static JSONObject task = null;
-    public static JSONObject tray = null;
-    public static JSONObject route = null;
-    public static JSONObject goods = null;
-    public static String bcPlace = null;
+    static JSONObject trays = null;
+    static JSONArray aCells;
+    static String bcPlace = null;
 
-    public static TextView tvCode;
-    public static TextView tvArt;
-    public static TextView tvBrand;
-    public static TextView tvName;
-//    public static TextView tvDescr;
-    public static TextView tvSost;
-    public static TextView tvTray;
-    public static TextView qNeed;
-    public static TextView qReal;
+    static TextView tvSost;
+    static TextView tvNeedT;
+    static TextView tvNeed;
+    static TextView tvNeedAT;
+    static TextView tvNeedA;
+    static TextView tvNeedBT;
+    static TextView tvNeedB;
+    static TextView tvNeedQT;
+    static TextView tvNeedQ;
+    static TextView tvCellT;
+    static TextView tvCell;
+    static TextView tvTrayT;
+    static TextView tvTray;
+
 
     /**
      * Initializes the UI and creates the detector pipeline.
@@ -168,26 +174,43 @@ public final class BarcodeCaptureActivity extends Activity {
 //        svHolder.addCallback(svHolderCallback);
 
         lLay = (RelativeLayout) findViewById(R.id.lLayout1);
-        lLay.setVisibility(View.INVISIBLE);
+//        lLay.setVisibility(View.INVISIBLE);
         lLay2 = (RelativeLayout) findViewById(R.id.lLayout2);
-        lLay2.setVisibility(View.INVISIBLE);
-
-        tvCode = (TextView) findViewById(R.id.tvCode);
-        tvArt = (TextView) findViewById(R.id.tvArt);
-        tvBrand = (TextView) findViewById(R.id.tvBrand);
-        tvName = (TextView) findViewById(R.id.tvName);
-//        tvDescr = (TextView) findViewById(R.id.tvDescr);
+//        lLay2.setVisibility(View.INVISIBLE);
         tvSost = (TextView) findViewById(R.id.tvSost);
+        tvNeed = (TextView) findViewById(R.id.tvNeed);
+        tvNeedT = (TextView) findViewById(R.id.tvNeedT);
+        tvNeedAT = (TextView) findViewById(R.id.tvNeedAT);
+        tvNeedA = (TextView) findViewById(R.id.tvNeedA);
+        tvNeedBT = (TextView) findViewById(R.id.tvNeedBT);
+        tvNeedB = (TextView) findViewById(R.id.tvNeedB);
+        tvNeedQT = (TextView) findViewById(R.id.tvNeedQT);
+        tvNeedQ = (TextView) findViewById(R.id.tvNeedQ);
+
+        tvCellT = (TextView) findViewById(R.id.tvCellT);
+        tvCell = (TextView) findViewById(R.id.tvCell);
+        tvTrayT = (TextView) findViewById(R.id.tvTrayT);
+        tvTray = (TextView) findViewById(R.id.tvTray);
+
+        tvNeedAT.setVisibility(View.INVISIBLE);
+        tvNeedA.setVisibility(View.INVISIBLE);
+        tvNeedBT.setVisibility(View.INVISIBLE);
+        tvNeedB.setVisibility(View.INVISIBLE);
+        tvNeedQT.setVisibility(View.INVISIBLE);
+        tvNeedQ.setVisibility(View.INVISIBLE);
+
+        tvCellT.setVisibility(View.INVISIBLE);
+        tvCell.setVisibility(View.INVISIBLE);
+        tvTrayT.setVisibility(View.INVISIBLE);
+        tvTray.setVisibility(View.INVISIBLE);
+
         BarcodeGraphic.step = 0;
         BarcodeGraphic.countGoods = 0;
-        tvTray = (TextView) findViewById(R.id.tvTray);
-        qNeed = (TextView) findViewById(R.id.qNeed);
-        qReal = (TextView) findViewById(R.id.qReal);
 
         // Получаем json
 //        AsyncTask<Void, Void, String> tmp = new ParseTask("http://onbqth.com/route2.json");
 //        AsyncTask<Void, Void, String> dStr = tmp.execute();
-        new ParseTask("http://onbqth.com/task.json").execute();
+        new ParseTask("http://onbqth.com/task2.json").execute();
     }
 
     /**
@@ -665,12 +688,22 @@ public final class BarcodeCaptureActivity extends Activity {
         @Override
         protected void onPostExecute(String strJson) {
             super.onPostExecute(strJson);
+            Iterator<String> iter;
+
             try {
+
                 JSONObject task = new JSONObject(strJson);
-                tray = new JSONObject(task.getString("tray"));
-                route = new JSONObject(task.getString("route"));
-                goods = new JSONObject(task.getString("goods"));
+
+                trays = new JSONObject(task.getString("tray"));
+                iter = trays.keys();
+                String s = "";
+                while (iter.hasNext())  s+= trays.getString(iter.next())+'\n';;
+                tvNeed.setText(s);
+
                 bcPlace = task.getString("place");
+
+                aCells = new JSONArray(task.getString("cells"));
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }

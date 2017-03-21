@@ -24,20 +24,20 @@
         "source": "C:\\Users\\ONBmob\\.android\\build-cache\\27c37e88a5ce770405c14df1e11a6ee9bcb06107\\output\\res\\color\\abc_primary_text_disable_only_material_light.xml"
     },
     {
-        "merged": "C:\\Users\\ONBmob\\AndroidStudioProjects\\barcode-reader\\app\\build\\intermediates\\res\\merged\\debug\\color\\abc_secondary_text_material_light.xml",
-        "source": "C:\\Users\\ONBmob\\.android\\build-cache\\27c37e88a5ce770405c14df1e11a6ee9bcb06107\\output\\res\\color\\abc_secondary_text_material_light.xml"
-    },
-    {
         "merged": "C:\\Users\\ONBmob\\AndroidStudioProjects\\barcode-reader\\app\\build\\intermediates\\res\\merged\\debug\\color\\abc_search_url_text.xml",
         "source": "C:\\Users\\ONBmob\\.android\\build-cache\\27c37e88a5ce770405c14df1e11a6ee9bcb06107\\output\\res\\color\\abc_search_url_text.xml"
     },
     {
-        "merged": "C:\\Users\\ONBmob\\AndroidStudioProjects\\barcode-reader\\app\\build\\intermediates\\res\\merged\\debug\\color\\abc_tint_seek_thumb.xml",
-        "source": "C:\\Users\\ONBmob\\.android\\build-cache\\27c37e88a5ce770405c14df1e11a6ee9bcb06107\\output\\res\\color\\abc_tint_seek_thumb.xml"
+        "merged": "C:\\Users\\ONBmob\\AndroidStudioProjects\\barcode-reader\\app\\build\\intermediates\\res\\merged\\debug\\color\\abc_secondary_text_material_light.xml",
+        "source": "C:\\Users\\ONBmob\\.android\\build-cache\\27c37e88a5ce770405c14df1e11a6ee9bcb06107\\output\\res\\color\\abc_secondary_text_material_light.xml"
     },
     {
         "merged": "C:\\Users\\ONBmob\\AndroidStudioProjects\\barcode-reader\\app\\build\\intermediates\\res\\merged\\debug\\color\\common_google_signin_btn_text_light.xml",
         "source": "C:\\Users\\ONBmob\\.android\\build-cache\\0db7552daad20c1a4686a76625e14de659e508b1\\output\\res\\color\\common_google_signin_btn_text_light.xml"
+    },
+    {
+        "merged": "C:\\Users\\ONBmob\\AndroidStudioProjects\\barcode-reader\\app\\build\\intermediates\\res\\merged\\debug\\color\\abc_tint_seek_thumb.xml",
+        "source": "C:\\Users\\ONBmob\\.android\\build-cache\\27c37e88a5ce770405c14df1e11a6ee9bcb06107\\output\\res\\color\\abc_tint_seek_thumb.xml"
     },
     {
         "merged": "C:\\Users\\ONBmob\\AndroidStudioProjects\\barcode-reader\\app\\build\\intermediates\\res\\merged\\debug\\color\\abc_tint_edittext.xml",

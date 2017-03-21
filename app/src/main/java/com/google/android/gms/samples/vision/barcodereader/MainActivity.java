@@ -163,7 +163,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     int sw = 0;
                     String s1 = "", s2 = "", s3 = "", s4 = "";
 
-                    if (barcode.rawValue.substring(0, 4).equals("cell")) sw = 1;
+                    if (barcode.rawValue.substring(0, 4).equals("cells")) sw = 1;
 
                     else if (barcode.rawValue.substring(0, 4).equals("сell")) sw = 1;
 
