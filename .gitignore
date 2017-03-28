@@ -5,7 +5,4 @@ build/
 local.properties
 .DS_Store
 captures/
-/app/build/generated/
-/app/build/intermediates/
-/app/build/tmp/
-/app/build/outputs/logs/
+/app/build/
