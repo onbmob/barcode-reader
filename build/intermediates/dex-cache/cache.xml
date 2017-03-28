@@ -12,6 +12,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="C:\Users\ONBmob\.android\build-cache\0f3dd03fe47fefcbb8faa7f1df58d1ffae246997\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="67eb33110dbacb46a48175b08ae0c96761d2c17d">
+        <dex dex="C:\Users\ONBmob\AndroidStudioProjects\barcode-reader\app\build\intermediates\pre-dexed\debug\classes_979a7e6526552b497aa799ba078393fbe8369b4d.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\ONBmob\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.2.0\support-annotations-25.2.0.jar"
         jumboMode="true"
         optimize="true"
@@ -21,12 +30,39 @@
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\ONBmob\.android\build-cache\756292becf98381de8e4a0e4539be720b5e762db\output\jars\classes.jar"
+        jar="C:\Users\ONBmob\.android\build-cache\6bbc470ba49d5205c4d4d79df4d81cab9afa3e52\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="ee394a892dd21c03a528139c1e8d4e0e1264ac84">
-        <dex dex="C:\Users\ONBmob\AndroidStudioProjects\barcode-reader\app\build\intermediates\pre-dexed\debug\classes_89197d91db3a5166f826a03e95a8f89adff37156.jar" />
+        sha1="8fe8a8f77d651982ce5e18f6187dc4daf914ac57">
+        <dex dex="C:\Users\ONBmob\AndroidStudioProjects\barcode-reader\app\build\intermediates\pre-dexed\debug\classes_96e9d28c95d78562b576d99d655d4188bb6da9a1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\ONBmob\.android\build-cache\f925373dcfb2b5f034ead8da2254f40c641fa342\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="810f41e5b7fd99f196ebeabe865ba2c54e7e76dc">
+        <dex dex="C:\Users\ONBmob\AndroidStudioProjects\barcode-reader\app\build\intermediates\pre-dexed\debug\classes_756089b488a6abf6604315d7f2027f28f9f8777f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\ONBmob\.android\build-cache\271f89e9c3c547e32f4e0b9f9c127075ebdcec39\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="cb454b52545859ed2f24a6c01366805b0fa04b22">
+        <dex dex="C:\Users\ONBmob\AndroidStudioProjects\barcode-reader\app\build\intermediates\pre-dexed\debug\classes_cf7a27467a820becc73e48f988cb3806327d3266.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\ONBmob\.android\build-cache\e62746fa2b715987aab6e0ea1f1f879b0053a8ed\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="fa0446a14ed5dd3725047d6399ffea771a564b30">
+        <dex dex="C:\Users\ONBmob\AndroidStudioProjects\barcode-reader\app\build\intermediates\pre-dexed\debug\classes_1cb3556162655ac9453b7fa22c87bafd00322b51.jar" />
     </item>
     <item
         is-multidex="false"
@@ -36,33 +72,6 @@
         revision="25.0.2"
         sha1="4a5a82a027706397fff621b22fd6fa796e91d7c5">
         <dex dex="C:\Users\ONBmob\AndroidStudioProjects\barcode-reader\app\build\intermediates\pre-dexed\debug\support-annotations-25.2.0_da3c40f2acfb169ef25ecd895d61c670590f1bff.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\ONBmob\.android\build-cache\6ccafab9166f25531ad167c24fe59a36ff4ab0b0\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="152de8da301561dcb0946471697a420d8f7a68c5">
-        <dex dex="C:\Users\ONBmob\AndroidStudioProjects\barcode-reader\app\build\intermediates\pre-dexed\debug\classes_531e8814ff246ca7b49055ff6a93ddee2f2bcfc7.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\ONBmob\.android\build-cache\41628748656db1aa5043d29fb058a71776f0792c\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="C:\Users\ONBmob\AndroidStudioProjects\barcode-reader\app\build\intermediates\pre-dexed\debug\classes_9fa15027fe4997c1c9ed61698de7bd5cfb6cd416.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\ONBmob\.android\build-cache\d7ba6d65e71ba164417a0ed2e21e4bff5fafbb3e\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="67eb33110dbacb46a48175b08ae0c96761d2c17d">
-        <dex dex="C:\Users\ONBmob\AndroidStudioProjects\barcode-reader\app\build\intermediates\pre-dexed\debug\classes_a8a56396fe2f495cefa47fc51b816602e0d6a8b9.jar" />
     </item>
     <item
         is-multidex="false"
@@ -75,75 +84,57 @@
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\ONBmob\.android\build-cache\944fe0c784089815ca8541cec40787bf3b528d8f\output\jars\classes.jar"
+        jar="C:\Users\ONBmob\.android\build-cache\b243cbed99d61a84715eefd3d10128db50627c02\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="702d339bc0a81d21354cd7e2cf2b67225fa4a16c">
-        <dex dex="C:\Users\ONBmob\AndroidStudioProjects\barcode-reader\app\build\intermediates\pre-dexed\debug\classes_c68e1c7ec2c67dff45022a79e98ee6c797b11da1.jar" />
+        sha1="ee394a892dd21c03a528139c1e8d4e0e1264ac84">
+        <dex dex="C:\Users\ONBmob\AndroidStudioProjects\barcode-reader\app\build\intermediates\pre-dexed\debug\classes_28098b94a6b164d4138a8030cad8ec28a4ff89d3.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\ONBmob\.android\build-cache\cd4bfd6f26912afa24282f7489c7d61e90385a56\output\jars\classes.jar"
+        jar="C:\Users\ONBmob\.android\build-cache\aaf6559f8142772564d82d511932818d8e83fa92\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="ea6a989b83d19b1b461281e0475a6cd6514897f8">
-        <dex dex="C:\Users\ONBmob\AndroidStudioProjects\barcode-reader\app\build\intermediates\pre-dexed\debug\classes_a45efc324a1c2483dd5b5c083dff9dd7caa7b8f5.jar" />
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\ONBmob\AndroidStudioProjects\barcode-reader\app\build\intermediates\pre-dexed\debug\classes_a21e30b26590aeb28b256c1a13d47dd82e8d80c4.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\ONBmob\.android\build-cache\4b75e530fc36e85f059c214f699b991b1d5006d0\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="8fe8a8f77d651982ce5e18f6187dc4daf914ac57">
-        <dex dex="C:\Users\ONBmob\AndroidStudioProjects\barcode-reader\app\build\intermediates\pre-dexed\debug\classes_bed45777e8a47442b55f3e8f3912c410fa2b54da.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\ONBmob\.android\build-cache\b378ea748fe361c7a2ccdbe371013a7c37129343\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="cb454b52545859ed2f24a6c01366805b0fa04b22">
-        <dex dex="C:\Users\ONBmob\AndroidStudioProjects\barcode-reader\app\build\intermediates\pre-dexed\debug\classes_109cfaa1326791260e37215d2e70391c78a42a8c.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\ONBmob\.android\build-cache\de241b1c53b1f0f44a3977473acc536c46301c8b\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="fa0446a14ed5dd3725047d6399ffea771a564b30">
-        <dex dex="C:\Users\ONBmob\AndroidStudioProjects\barcode-reader\app\build\intermediates\pre-dexed\debug\classes_68ce19cf0fe1005e04e758e3cd94d2373e29106f.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\ONBmob\.android\build-cache\481b1415c5ecad4db2f5a4221cdb4f4a010bea30\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="e51c2f662bb72419632af5192553c37e33890a99">
-        <dex dex="C:\Users\ONBmob\AndroidStudioProjects\barcode-reader\app\build\intermediates\pre-dexed\debug\classes_84a529299f41f1c51d7d8d87438f2b82f1b20e66.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\ONBmob\.android\build-cache\b333be816752a98d397811d3403864e44e726ebf\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="810f41e5b7fd99f196ebeabe865ba2c54e7e76dc">
-        <dex dex="C:\Users\ONBmob\AndroidStudioProjects\barcode-reader\app\build\intermediates\pre-dexed\debug\classes_e27ec04fdb2ad4f61a1dc5fa3eb096dd270cd608.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\ONBmob\.android\build-cache\5901c7b60e49ee91078e6804a5f0d2caf6be42d6\output\jars\classes.jar"
+        jar="C:\Users\ONBmob\.android\build-cache\280c2f8621c474a9e887d8ed25fdb37cf2d41c9d\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="e820b7be8c035dd522da4bc822e8a76c8e27921a">
-        <dex dex="C:\Users\ONBmob\AndroidStudioProjects\barcode-reader\app\build\intermediates\pre-dexed\debug\classes_b6578cbf3147d59ed53a9dd20f72abc0c9a9fc9a.jar" />
+        <dex dex="C:\Users\ONBmob\AndroidStudioProjects\barcode-reader\app\build\intermediates\pre-dexed\debug\classes_40e3d493b46caa6895325e3382597e7460061b90.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\ONBmob\.android\build-cache\2e1238d8e665c9f493cebd8f40d1c5fd04b8d995\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ea6a989b83d19b1b461281e0475a6cd6514897f8">
+        <dex dex="C:\Users\ONBmob\AndroidStudioProjects\barcode-reader\app\build\intermediates\pre-dexed\debug\classes_c6399419aaa803c6e9caddfda038ccb598dcd9ec.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\ONBmob\.android\build-cache\f0d1d695c384b426adf2b8e0f1f7545399ff2fae\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="152de8da301561dcb0946471697a420d8f7a68c5">
+        <dex dex="C:\Users\ONBmob\AndroidStudioProjects\barcode-reader\app\build\intermediates\pre-dexed\debug\classes_15d8f1b30f5f6642d304d959420dea932cf84c1c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\ONBmob\.android\build-cache\4f8558b88f0d3468c6b464c61ff6055bf20dea06\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e51c2f662bb72419632af5192553c37e33890a99">
+        <dex dex="C:\Users\ONBmob\AndroidStudioProjects\barcode-reader\app\build\intermediates\pre-dexed\debug\classes_3f14fd268cd54002fffaa3ba4ee4d0e8176fc243.jar" />
     </item>
     <item
         is-multidex="false"
@@ -162,6 +153,15 @@
         revision="25.0.2"
         sha1="444f9de23145e8caba7bf1c1772acad142ea6013">
         <dex dex="C:\Users\ONBmob\AndroidStudioProjects\barcode-reader\app\build\intermediates\pre-dexed\debug\classes_2237979e82de0b6a618f1bfff81f36285e7e5ca1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\ONBmob\.android\build-cache\4b2776606b5c57a695d50a27d707f19bd4863bb0\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="702d339bc0a81d21354cd7e2cf2b67225fa4a16c">
+        <dex dex="C:\Users\ONBmob\AndroidStudioProjects\barcode-reader\app\build\intermediates\pre-dexed\debug\classes_a47733373329df95473ab8e20828aa9662df1208.jar" />
     </item>
 
 </items>

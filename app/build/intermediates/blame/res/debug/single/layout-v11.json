@@ -1,26 +1,26 @@
 [
     {
         "merged": "C:\\Users\\ONBmob\\AndroidStudioProjects\\barcode-reader\\app\\build\\intermediates\\res\\merged\\debug\\layout-v11\\notification_template_big_media_narrow.xml",
-        "source": "C:\\Users\\ONBmob\\.android\\build-cache\\944fe0c784089815ca8541cec40787bf3b528d8f\\output\\res\\layout-v11\\notification_template_big_media_narrow.xml"
+        "source": "C:\\Users\\ONBmob\\.android\\build-cache\\4b2776606b5c57a695d50a27d707f19bd4863bb0\\output\\res\\layout-v11\\notification_template_big_media_narrow.xml"
     },
     {
         "merged": "C:\\Users\\ONBmob\\AndroidStudioProjects\\barcode-reader\\app\\build\\intermediates\\res\\merged\\debug\\layout-v11\\notification_template_big_media_narrow_custom.xml",
-        "source": "C:\\Users\\ONBmob\\.android\\build-cache\\944fe0c784089815ca8541cec40787bf3b528d8f\\output\\res\\layout-v11\\notification_template_big_media_narrow_custom.xml"
+        "source": "C:\\Users\\ONBmob\\.android\\build-cache\\4b2776606b5c57a695d50a27d707f19bd4863bb0\\output\\res\\layout-v11\\notification_template_big_media_narrow_custom.xml"
     },
     {
         "merged": "C:\\Users\\ONBmob\\AndroidStudioProjects\\barcode-reader\\app\\build\\intermediates\\res\\merged\\debug\\layout-v11\\notification_template_big_media_custom.xml",
-        "source": "C:\\Users\\ONBmob\\.android\\build-cache\\944fe0c784089815ca8541cec40787bf3b528d8f\\output\\res\\layout-v11\\notification_template_big_media_custom.xml"
+        "source": "C:\\Users\\ONBmob\\.android\\build-cache\\4b2776606b5c57a695d50a27d707f19bd4863bb0\\output\\res\\layout-v11\\notification_template_big_media_custom.xml"
     },
     {
         "merged": "C:\\Users\\ONBmob\\AndroidStudioProjects\\barcode-reader\\app\\build\\intermediates\\res\\merged\\debug\\layout-v11\\notification_template_big_media.xml",
-        "source": "C:\\Users\\ONBmob\\.android\\build-cache\\944fe0c784089815ca8541cec40787bf3b528d8f\\output\\res\\layout-v11\\notification_template_big_media.xml"
+        "source": "C:\\Users\\ONBmob\\.android\\build-cache\\4b2776606b5c57a695d50a27d707f19bd4863bb0\\output\\res\\layout-v11\\notification_template_big_media.xml"
     },
     {
         "merged": "C:\\Users\\ONBmob\\AndroidStudioProjects\\barcode-reader\\app\\build\\intermediates\\res\\merged\\debug\\layout-v11\\notification_media_action.xml",
-        "source": "C:\\Users\\ONBmob\\.android\\build-cache\\944fe0c784089815ca8541cec40787bf3b528d8f\\output\\res\\layout-v11\\notification_media_action.xml"
+        "source": "C:\\Users\\ONBmob\\.android\\build-cache\\4b2776606b5c57a695d50a27d707f19bd4863bb0\\output\\res\\layout-v11\\notification_media_action.xml"
     },
     {
         "merged": "C:\\Users\\ONBmob\\AndroidStudioProjects\\barcode-reader\\app\\build\\intermediates\\res\\merged\\debug\\layout-v11\\notification_media_cancel_action.xml",
-        "source": "C:\\Users\\ONBmob\\.android\\build-cache\\944fe0c784089815ca8541cec40787bf3b528d8f\\output\\res\\layout-v11\\notification_media_cancel_action.xml"
+        "source": "C:\\Users\\ONBmob\\.android\\build-cache\\4b2776606b5c57a695d50a27d707f19bd4863bb0\\output\\res\\layout-v11\\notification_media_cancel_action.xml"
     }
 ]

@@ -30,10 +30,11 @@ import android.view.View;
 import com.google.android.gms.samples.vision.barcodereader.ui.camera.GraphicOverlay;
 import com.google.android.gms.vision.barcode.Barcode;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import static com.google.android.gms.samples.vision.barcodereader.BarcodeCaptureActivity.aCells;
+//import static com.google.android.gms.samples.vision.barcodereader.BarcodeCaptureActivity.aCells;
 
 /**
  * Graphic instance for rendering barcode position, size, and ID within an associated graphic
@@ -67,11 +68,23 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
 //    private Path path = new Path();
 
     static int step = 0;
+    static int countCells = 0;
     static int countGoods = 0;
+
     private static String bcTray = "";
     private static String sTray = "";
     private static String bcGoods = "";
     private static int needGoods = 0;
+
+    static JSONObject trays = null;
+    static JSONObject route = null;
+    static JSONArray aCells;
+    static String     bcPlace = null;
+
+
+
+
+
 
     BarcodeGraphic(GraphicOverlay overlay) {
         super(overlay);
@@ -152,9 +165,9 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
             return;
         }
 
-        if (BarcodeCaptureActivity.trays == null
-//              ||  BarcodeCaptureActivity.cells == null
-              ||  BarcodeCaptureActivity.bcPlace == null
+        if (trays == null
+                ||  aCells == null
+                ||  bcPlace == null
         ) {
             Paint mTextStem = new Paint();
             mTextStem.setColor(Color.RED);
@@ -177,10 +190,10 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
 
         switch (step) {
             case 0:   // Выбираем лоток
-                if (BarcodeCaptureActivity.trays != null && !BarcodeCaptureActivity.trays.isNull(barcode.rawValue)) {
+                if (trays != null && !trays.isNull(barcode.rawValue)) {
                     // лоток "наш"
                     try {
-                        sTray = BarcodeCaptureActivity.trays.getString(barcode.rawValue);
+                        sTray = trays.getString(barcode.rawValue);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -192,8 +205,9 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
                         BarcodeCaptureActivity.tvTrayT.setVisibility(View.VISIBLE);
 
                         try {
-                            JSONObject item0 = BarcodeCaptureActivity.aCells.getJSONObject(0);
+                            JSONObject item0 =aCells.getJSONObject(0);
                             BarcodeCaptureActivity.tvNeed.setText(item0.getString("name"));
+                            route = item0.getJSONObject("route");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -212,12 +226,12 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
                 }
                 break;
 
-/*
+
             case 1:   //Распознаем стрелки
                 canvas.drawText(barcode.rawValue, rect.left, rect.bottom, mTextPaint);
-                if (BarcodeCaptureActivity.route != null && !BarcodeCaptureActivity.route.isNull(barcode.rawValue)) {
+                if (route != null && !route.isNull(barcode.rawValue)) {
                     try {
-                        bc = BarcodeCaptureActivity.route.getInt(barcode.rawValue);
+                        bc = route.getInt(barcode.rawValue);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -300,7 +314,7 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
                 canvas.drawRect(rect, mRectPaint);
                 canvas.drawText(barcode.rawValue, rect.left, rect.bottom, mTextPaint);
                 break;
-
+/*
             case 2:  // Распознаем товар
                 if (BarcodeCaptureActivity.goods != null && !BarcodeCaptureActivity.goods.isNull(barcode.rawValue)) {
                     // есть код
@@ -383,8 +397,8 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
 
 */
             case 5:  // Выходим в зону погрузки
-                if (BarcodeCaptureActivity.bcPlace.equals(barcode.rawValue)) {
-                    if (bounce.check(BarcodeCaptureActivity.bcPlace)) { // Поймали
+                if (bcPlace.equals(barcode.rawValue)) {
+                    if (bounce.check(bcPlace)) { // Поймали
                         BarcodeCaptureActivity.tvSost.setText("Поздравляем, Вы справились с заданием.");
                         mp.start();
                         step = 6;

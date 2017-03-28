@@ -27,6 +27,10 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PixelFormat;
 import android.hardware.Camera;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -39,6 +43,8 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -108,10 +114,6 @@ public final class BarcodeCaptureActivity extends Activity {
     static RelativeLayout lLay;
     static RelativeLayout lLay2;
 
-    static JSONObject trays = null;
-    static JSONArray aCells;
-    static String bcPlace = null;
-
     static TextView tvSost;
     static TextView tvNeedT;
     static TextView tvNeed;
@@ -125,7 +127,6 @@ public final class BarcodeCaptureActivity extends Activity {
     static TextView tvCell;
     static TextView tvTrayT;
     static TextView tvTray;
-
 
     /**
      * Initializes the UI and creates the detector pipeline.
@@ -160,18 +161,12 @@ public final class BarcodeCaptureActivity extends Activity {
             requestCameraPermission();
         }
 
-        gestureDetector = new GestureDetector(this, new CaptureGestureListener());
+//        gestureDetector = new GestureDetector(this, new CaptureGestureListener());
         scaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener());
 
 //        Snackbar.make(mGraphicOverlay, "Tap to capture. Pinch/Stretch to zoom",
 //                Snackbar.LENGTH_LONG)
 //                .show();
-
-        // surfaceView
-//        sv = (SurfaceView) findViewById(R.id.surfaceView);
-//        svHolder = sv.getHolder();
-//        svHolderCallback = new HolderCallback();
-//        svHolder.addCallback(svHolderCallback);
 
         lLay = (RelativeLayout) findViewById(R.id.lLayout1);
 //        lLay.setVisibility(View.INVISIBLE);
@@ -207,10 +202,21 @@ public final class BarcodeCaptureActivity extends Activity {
         BarcodeGraphic.step = 0;
         BarcodeGraphic.countGoods = 0;
 
+        // surfaceView
+//        sv = (SurfaceView) findViewById(R.id.surfaceView);
+//        svHolder = sv.getHolder();
+//        svHolderCallback = new HolderCallback();
+//        svHolder.addCallback(svHolderCallback);
+
+//        mPreview.setVisibility(View.INVISIBLE);
+//        mPreview.setAlpha(0.5f);
+
         // Получаем json
 //        AsyncTask<Void, Void, String> tmp = new ParseTask("http://onbqth.com/route2.json");
 //        AsyncTask<Void, Void, String> dStr = tmp.execute();
         new ParseTask("http://onbqth.com/task2.json").execute();
+
+
     }
 
     /**
@@ -435,13 +441,14 @@ public final class BarcodeCaptureActivity extends Activity {
         }
     }
 
-    /**
+    /*
      * onTap returns the tapped barcode result to the calling Activity.
      *
      * @param rawX - the raw position of the tap
      * @param rawY - the raw position of the tap.
      * @return true if the activity is ending.
      */
+/*
     private boolean onTap(float rawX, float rawY) {
         // Find tap point in preview frame coordinates.
         int[] location = new int[2];
@@ -484,17 +491,18 @@ public final class BarcodeCaptureActivity extends Activity {
         }
         return false;
     }
+*/
 
 //    public static void BtClick(View view) {
 //        lLay.setVisibility(View.INVISIBLE);
 //    }
 
-    private class CaptureGestureListener extends GestureDetector.SimpleOnGestureListener {
-        @Override
-        public boolean onSingleTapConfirmed(MotionEvent e) {
-            return onTap(e.getRawX(), e.getRawY()) || super.onSingleTapConfirmed(e);
-        }
-    }
+//    private class CaptureGestureListener extends GestureDetector.SimpleOnGestureListener {
+//        @Override
+//        public boolean onSingleTapConfirmed(MotionEvent e) {
+//            return onTap(e.getRawX(), e.getRawY()) || super.onSingleTapConfirmed(e);
+//        }
+//    }
 
     private class ScaleListener implements ScaleGestureDetector.OnScaleGestureListener {
 
@@ -550,6 +558,8 @@ public final class BarcodeCaptureActivity extends Activity {
         }
     }
 
+
+
     // Статический слой
 /*
    public class HolderCallback implements SurfaceHolder.Callback {
@@ -559,7 +569,7 @@ public final class BarcodeCaptureActivity extends Activity {
         @Override
         public void surfaceCreated(SurfaceHolder surfaceHolder) {
 
-            Log.route("HolderCallback", "surfaceCreated");
+            Log.d("HolderCallback", "surfaceCreated");
 
             drawThread = new DrawThread(surfaceHolder);
             drawThread.setRunning(true);
@@ -569,7 +579,7 @@ public final class BarcodeCaptureActivity extends Activity {
 
         @Override
         public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2) {
-            Log.route("HolderCallback", "surfaceChanged");
+            Log.d("HolderCallback", "surfaceChanged");
 
             surfaceHolder.setFormat(PixelFormat.TRANSLUCENT);
 
@@ -577,14 +587,14 @@ public final class BarcodeCaptureActivity extends Activity {
             Paint mTextStem = new Paint();
             mTextStem.setColor(Color.MAGENTA);
             mTextStem.setTextSize(36.0f);
-            svCanvas.drawText("Stemsc. Pre-sale.WMS AR", 20, 40, mTextStem);
+            svCanvas.drawText("Stemsc. Pre-sale.WMS AR", 320, 340, mTextStem);
             surfaceHolder.unlockCanvasAndPost(svCanvas);
 
         }
 
         @Override
         public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-            Log.route("HolderCallback", "surfaceDestroyed");
+            Log.d("HolderCallback", "surfaceDestroyed");
             boolean retry = true;
             drawThread.setRunning(false);
             while (retry) {
@@ -632,7 +642,7 @@ public final class BarcodeCaptureActivity extends Activity {
                     finally {
                         if (canvas != null) {
                             surfaceHolder.unlockCanvasAndPost(canvas);
-                            Log.route("DrawThread", "+++++++++++++++++++++++++++++++++++++++++++");
+                            Log.d("DrawThread", "+++++++++++++++++++++++++++++++++++++++++++");
                         }
                     }
                 }
@@ -642,9 +652,10 @@ public final class BarcodeCaptureActivity extends Activity {
 
     }
 */
+
     // получаем JSON
     private class ParseTask extends AsyncTask<Void, Void, String> {
-        private static final String LOG_TAG = "JSON Barcode-reader ";
+        //        private static final String LOG_TAG = "JSON Barcode-reader ";
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
         String resultJson = "";
@@ -668,7 +679,7 @@ public final class BarcodeCaptureActivity extends Activity {
                 urlConnection.connect();
 
                 InputStream inputStream = urlConnection.getInputStream();
-                StringBuffer buffer = new StringBuffer();
+                StringBuilder buffer = new StringBuilder();
 
                 reader = new BufferedReader(new InputStreamReader(inputStream));
 
@@ -688,25 +699,27 @@ public final class BarcodeCaptureActivity extends Activity {
         @Override
         protected void onPostExecute(String strJson) {
             super.onPostExecute(strJson);
-            Iterator<String> iter;
-
             try {
-
                 JSONObject task = new JSONObject(strJson);
 
-                trays = new JSONObject(task.getString("tray"));
-                iter = trays.keys();
+                BarcodeGraphic.trays = new JSONObject(task.getString("tray"));
+                Iterator<String> iter = BarcodeGraphic.trays.keys();
                 String s = "";
-                while (iter.hasNext())  s+= trays.getString(iter.next())+'\n';;
+                while (iter.hasNext())  s+= BarcodeGraphic.trays.getString(iter.next())+'\n';
                 tvNeed.setText(s);
 
-                bcPlace = task.getString("place");
+                BarcodeGraphic. bcPlace = task.getString("place");
 
-                aCells = new JSONArray(task.getString("cells"));
+                BarcodeGraphic.aCells = new JSONArray(task.getString("cells"));
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
     }
+//    public TextView getTvSost(){
+//        return  (TextView) findViewById(str);
+//        return  (TextView) findViewById(R.id.tvSost);
+//        tvSost.setText("Поздравляем, Вы справились с заданием.");
+//    }
 }
