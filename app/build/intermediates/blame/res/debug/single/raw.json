@@ -14,5 +14,9 @@
     {
         "merged": "C:\\Users\\ONBmob\\AndroidStudioProjects\\barcode-reader\\app\\build\\intermediates\\res\\merged\\debug\\raw\\explosion.ogg",
         "source": "C:\\Users\\ONBmob\\AndroidStudioProjects\\barcode-reader\\app\\src\\main\\res\\raw\\explosion.ogg"
+    },
+    {
+        "merged": "C:\\Users\\ONBmob\\AndroidStudioProjects\\barcode-reader\\app\\build\\intermediates\\res\\merged\\debug\\raw\\route2.json",
+        "source": "C:\\Users\\ONBmob\\AndroidStudioProjects\\barcode-reader\\app\\src\\main\\res\\raw\\route2.json"
     }
 ]

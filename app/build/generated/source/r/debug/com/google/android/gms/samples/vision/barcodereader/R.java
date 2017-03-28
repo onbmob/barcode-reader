@@ -3043,9 +3043,10 @@ containing a value of this type.
     }
     public static final class raw {
         public static final int explosion=0x7f070000;
-        public static final int shot=0x7f070001;
-        public static final int task=0x7f070002;
-        public static final int task2=0x7f070003;
+        public static final int route2=0x7f070001;
+        public static final int shot=0x7f070002;
+        public static final int task=0x7f070003;
+        public static final int task2=0x7f070004;
     }
     public static final class string {
         public static final int abc_action_bar_home_description=0x7f080000;

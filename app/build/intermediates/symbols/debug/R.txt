@@ -1002,9 +1002,10 @@ int mipmap png2 0x7f030002
 int mipmap png3 0x7f030003
 int mipmap png4 0x7f030004
 int raw explosion 0x7f070000
-int raw shot 0x7f070001
-int raw task 0x7f070002
-int raw task2 0x7f070003
+int raw route2 0x7f070001
+int raw shot 0x7f070002
+int raw task 0x7f070003
+int raw task2 0x7f070004
 int string abc_action_bar_home_description 0x7f080000
 int string abc_action_bar_home_description_format 0x7f080001
 int string abc_action_bar_home_subtitle_description_format 0x7f080002

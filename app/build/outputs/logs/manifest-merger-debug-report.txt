@@ -33,17 +33,17 @@ MERGED from [com.google.android.gms:play-services-vision:10.2.0] C:\Users\ONBmob
 MERGED from [com.google.android.gms:play-services-base:10.2.0] C:\Users\ONBmob\.android\build-cache\0db7552daad20c1a4686a76625e14de659e508b1\output\AndroidManifest.xml:18:5-20:19
 MERGED from [com.google.android.gms:play-services-tasks:10.2.0] C:\Users\ONBmob\.android\build-cache\5bce77dd6104650d64ff87a2fd5f900bd231c498\output\AndroidManifest.xml:4:5-19
 MERGED from [com.google.android.gms:play-services-basement:10.2.0] C:\Users\ONBmob\.android\build-cache\9739d218b68b31147ef8ef52a82e1a0bd948f6ab\output\AndroidManifest.xml:19:5-21:19
-MERGED from [com.android.support:design:25.2.0] C:\Users\ONBmob\.android\build-cache\b5473757a98047dbc765ae24aba2116ba0372f6f\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:appcompat-v7:25.2.0] C:\Users\ONBmob\.android\build-cache\27c37e88a5ce770405c14df1e11a6ee9bcb06107\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:animated-vector-drawable:25.2.0] C:\Users\ONBmob\.android\build-cache\246249040b629499b901bc51eb59989862bb50b6\output\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-vector-drawable:25.2.0] C:\Users\ONBmob\.android\build-cache\cc908add34e839be9878270ef10427eb7a5f5185\output\AndroidManifest.xml:23:5-20
-MERGED from [com.android.support:transition:25.2.0] C:\Users\ONBmob\.android\build-cache\1d049704e6eb2495e600519a770aa7e53aac0f08\output\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:25.2.0] C:\Users\ONBmob\.android\build-cache\309f109b615d5d9c1e8259bb8b1ec0b4eead8d06\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-fragment:25.2.0] C:\Users\ONBmob\.android\build-cache\2e8b9992621c149643dcf63e80d92326cd0bc3c9\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-media-compat:25.2.0] C:\Users\ONBmob\.android\build-cache\d821fce149be55f626fe6f91a7f9e391a32d1475\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-core-ui:25.2.0] C:\Users\ONBmob\.android\build-cache\0a8abfb071de04ec6f5fd7d80637022022a2d71e\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-core-utils:25.2.0] C:\Users\ONBmob\.android\build-cache\57acc2a6fc7c59457f00698805c6fc5ab424b44a\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-compat:25.2.0] C:\Users\ONBmob\.android\build-cache\d1bcd4793feebc2a3ae20811753a6408caba1f44\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:design:25.2.0] C:\Users\ONBmob\.android\build-cache\cd4bfd6f26912afa24282f7489c7d61e90385a56\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:appcompat-v7:25.2.0] C:\Users\ONBmob\.android\build-cache\944fe0c784089815ca8541cec40787bf3b528d8f\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.2.0] C:\Users\ONBmob\.android\build-cache\b378ea748fe361c7a2ccdbe371013a7c37129343\output\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-vector-drawable:25.2.0] C:\Users\ONBmob\.android\build-cache\b333be816752a98d397811d3403864e44e726ebf\output\AndroidManifest.xml:23:5-20
+MERGED from [com.android.support:transition:25.2.0] C:\Users\ONBmob\.android\build-cache\481b1415c5ecad4db2f5a4221cdb4f4a010bea30\output\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:25.2.0] C:\Users\ONBmob\.android\build-cache\41628748656db1aa5043d29fb058a71776f0792c\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-fragment:25.2.0] C:\Users\ONBmob\.android\build-cache\4b75e530fc36e85f059c214f699b991b1d5006d0\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-media-compat:25.2.0] C:\Users\ONBmob\.android\build-cache\756292becf98381de8e4a0e4539be720b5e762db\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-ui:25.2.0] C:\Users\ONBmob\.android\build-cache\de241b1c53b1f0f44a3977473acc536c46301c8b\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-utils:25.2.0] C:\Users\ONBmob\.android\build-cache\5901c7b60e49ee91078e6804a5f0d2caf6be42d6\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-compat:25.2.0] C:\Users\ONBmob\.android\build-cache\d7ba6d65e71ba164417a0ed2e21e4bff5fafbb3e\output\AndroidManifest.xml:25:5-20
 	android:screenOrientation
 		ADDED from C:\Users\ONBmob\AndroidStudioProjects\barcode-reader\app\src\main\AndroidManifest.xml:19:9-46
 	android:label
@@ -113,20 +113,20 @@ MERGED from [com.google.android.gms:play-services-vision:10.2.0] C:\Users\ONBmob
 MERGED from [com.google.android.gms:play-services-base:10.2.0] C:\Users\ONBmob\.android\build-cache\0db7552daad20c1a4686a76625e14de659e508b1\output\AndroidManifest.xml:17:5-43
 MERGED from [com.google.android.gms:play-services-tasks:10.2.0] C:\Users\ONBmob\.android\build-cache\5bce77dd6104650d64ff87a2fd5f900bd231c498\output\AndroidManifest.xml:3:5-43
 MERGED from [com.google.android.gms:play-services-basement:10.2.0] C:\Users\ONBmob\.android\build-cache\9739d218b68b31147ef8ef52a82e1a0bd948f6ab\output\AndroidManifest.xml:17:5-43
-MERGED from [com.android.support:design:25.2.0] C:\Users\ONBmob\.android\build-cache\b5473757a98047dbc765ae24aba2116ba0372f6f\output\AndroidManifest.xml:21:5-23:62
-MERGED from [com.android.support:appcompat-v7:25.2.0] C:\Users\ONBmob\.android\build-cache\27c37e88a5ce770405c14df1e11a6ee9bcb06107\output\AndroidManifest.xml:21:5-23:78
-MERGED from [com.android.support:animated-vector-drawable:25.2.0] C:\Users\ONBmob\.android\build-cache\246249040b629499b901bc51eb59989862bb50b6\output\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:25.2.0] C:\Users\ONBmob\.android\build-cache\cc908add34e839be9878270ef10427eb7a5f5185\output\AndroidManifest.xml:21:5-43
-MERGED from [com.android.support:recyclerview-v7:25.2.0] C:\Users\ONBmob\.android\build-cache\eb2d8bcd0efd0917079d93cb08ff394416f8f4b9\output\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:transition:25.2.0] C:\Users\ONBmob\.android\build-cache\1d049704e6eb2495e600519a770aa7e53aac0f08\output\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-v4:25.2.0] C:\Users\ONBmob\.android\build-cache\309f109b615d5d9c1e8259bb8b1ec0b4eead8d06\output\AndroidManifest.xml:21:5-23:54
-MERGED from [com.android.support:support-fragment:25.2.0] C:\Users\ONBmob\.android\build-cache\2e8b9992621c149643dcf63e80d92326cd0bc3c9\output\AndroidManifest.xml:21:5-23:60
-MERGED from [com.android.support:support-media-compat:25.2.0] C:\Users\ONBmob\.android\build-cache\d821fce149be55f626fe6f91a7f9e391a32d1475\output\AndroidManifest.xml:21:5-23:63
-MERGED from [com.android.support:support-core-ui:25.2.0] C:\Users\ONBmob\.android\build-cache\0a8abfb071de04ec6f5fd7d80637022022a2d71e\output\AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support:support-core-utils:25.2.0] C:\Users\ONBmob\.android\build-cache\57acc2a6fc7c59457f00698805c6fc5ab424b44a\output\AndroidManifest.xml:21:5-23:61
-MERGED from [com.android.support:support-compat:25.2.0] C:\Users\ONBmob\.android\build-cache\d1bcd4793feebc2a3ae20811753a6408caba1f44\output\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:design:25.2.0] C:\Users\ONBmob\.android\build-cache\cd4bfd6f26912afa24282f7489c7d61e90385a56\output\AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:appcompat-v7:25.2.0] C:\Users\ONBmob\.android\build-cache\944fe0c784089815ca8541cec40787bf3b528d8f\output\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:animated-vector-drawable:25.2.0] C:\Users\ONBmob\.android\build-cache\b378ea748fe361c7a2ccdbe371013a7c37129343\output\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:25.2.0] C:\Users\ONBmob\.android\build-cache\b333be816752a98d397811d3403864e44e726ebf\output\AndroidManifest.xml:21:5-43
+MERGED from [com.android.support:recyclerview-v7:25.2.0] C:\Users\ONBmob\.android\build-cache\6ccafab9166f25531ad167c24fe59a36ff4ab0b0\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:transition:25.2.0] C:\Users\ONBmob\.android\build-cache\481b1415c5ecad4db2f5a4221cdb4f4a010bea30\output\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:25.2.0] C:\Users\ONBmob\.android\build-cache\41628748656db1aa5043d29fb058a71776f0792c\output\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:25.2.0] C:\Users\ONBmob\.android\build-cache\4b75e530fc36e85f059c214f699b991b1d5006d0\output\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:25.2.0] C:\Users\ONBmob\.android\build-cache\756292becf98381de8e4a0e4539be720b5e762db\output\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-ui:25.2.0] C:\Users\ONBmob\.android\build-cache\de241b1c53b1f0f44a3977473acc536c46301c8b\output\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:25.2.0] C:\Users\ONBmob\.android\build-cache\5901c7b60e49ee91078e6804a5f0d2caf6be42d6\output\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-compat:25.2.0] C:\Users\ONBmob\.android\build-cache\d7ba6d65e71ba164417a0ed2e21e4bff5fafbb3e\output\AndroidManifest.xml:21:5-23:58
 	tools:overrideLibrary
-		ADDED from [com.android.support:design:25.2.0] C:\Users\ONBmob\.android\build-cache\b5473757a98047dbc765ae24aba2116ba0372f6f\output\AndroidManifest.xml:23:9-59
+		ADDED from [com.android.support:design:25.2.0] C:\Users\ONBmob\.android\build-cache\cd4bfd6f26912afa24282f7489c7d61e90385a56\output\AndroidManifest.xml:23:9-59
 	android:targetSdkVersion
 		INJECTED from C:\Users\ONBmob\AndroidStudioProjects\barcode-reader\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\ONBmob\AndroidStudioProjects\barcode-reader\app\src\main\AndroidManifest.xml
