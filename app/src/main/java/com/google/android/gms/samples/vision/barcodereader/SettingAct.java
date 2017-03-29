@@ -21,9 +21,10 @@ public class SettingAct extends AppCompatActivity implements View.OnClickListene
         sPref = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext());
         ((CompoundButton) findViewById(R.id.m_auto_focus)).setChecked(sPref.getBoolean("af", true));
         ((CompoundButton) findViewById(R.id.m_use_flash)).setChecked(sPref.getBoolean("fl", false));
-        ((CompoundButton) findViewById(R.id.use_arrow)).setChecked(sPref.getBoolean("arr", true));
-        ((CompoundButton) findViewById(R.id.use_description)).setChecked(sPref.getBoolean("desc", true));
-        ((CompoundButton) findViewById(R.id.use_deb)).setChecked(sPref.getBoolean("deb", false));
+        ((CompoundButton) findViewById(R.id.m_raw)).setChecked(sPref.getBoolean("raw", false));
+//        ((CompoundButton) findViewById(R.id.use_arrow)).setChecked(sPref.getBoolean("arr", true));
+//        ((CompoundButton) findViewById(R.id.use_description)).setChecked(sPref.getBoolean("desc", true));
+//        ((CompoundButton) findViewById(R.id.use_deb)).setChecked(sPref.getBoolean("deb", false));
     }
 
     @Override
@@ -33,9 +34,10 @@ public class SettingAct extends AppCompatActivity implements View.OnClickListene
             SharedPreferences.Editor ed = sPref.edit();
             ed.putBoolean("af", ((CompoundButton) findViewById(R.id.m_auto_focus)).isChecked());
             ed.putBoolean("fl", ((CompoundButton) findViewById(R.id.m_use_flash)).isChecked());
-            ed.putBoolean("arr", ((CompoundButton) findViewById(R.id.use_arrow)).isChecked());
-            ed.putBoolean("desc", ((CompoundButton) findViewById(R.id.use_description)).isChecked());
-            ed.putBoolean("deb", ((CompoundButton) findViewById(R.id.use_deb)).isChecked());
+            ed.putBoolean("raw", ((CompoundButton) findViewById(R.id.m_raw)).isChecked());
+//            ed.putBoolean("arr", ((CompoundButton) findViewById(R.id.use_arrow)).isChecked());
+//            ed.putBoolean("desc", ((CompoundButton) findViewById(R.id.use_description)).isChecked());
+//            ed.putBoolean("deb", ((CompoundButton) findViewById(R.id.use_deb)).isChecked());
             //  ed.commit(); // Типа во внешнюю
             ed.apply();
 

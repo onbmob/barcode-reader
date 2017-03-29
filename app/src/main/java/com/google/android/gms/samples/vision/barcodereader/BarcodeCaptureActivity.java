@@ -43,8 +43,6 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -128,6 +126,11 @@ public final class BarcodeCaptureActivity extends Activity {
     static TextView tvTrayT;
     static TextView tvTray;
 
+    boolean autoFocus;
+    boolean useFlash;
+    boolean mRaw;
+
+
     /**
      * Initializes the UI and creates the detector pipeline.
      */
@@ -149,8 +152,9 @@ public final class BarcodeCaptureActivity extends Activity {
 //        boolean useFlash = getIntent().getBooleanExtra(UseFlash, false);
         // Теперь берем из настроек
         SharedPreferences sPref = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext());
-        boolean autoFocus = sPref.getBoolean("af", true);
-        boolean useFlash = sPref.getBoolean("fl", false);
+        autoFocus = sPref.getBoolean("af", true);
+        useFlash = sPref.getBoolean("fl", false);
+        mRaw = sPref.getBoolean("raw", false);
 
         // Check for the camera permission before accessing the camera.  If the
         // permission is not granted yet, request permission.
@@ -168,11 +172,19 @@ public final class BarcodeCaptureActivity extends Activity {
 //                Snackbar.LENGTH_LONG)
 //                .show();
 
-        lLay = (RelativeLayout) findViewById(R.id.lLayout1);
-//        lLay.setVisibility(View.INVISIBLE);
-        lLay2 = (RelativeLayout) findViewById(R.id.lLayout2);
-//        lLay2.setVisibility(View.INVISIBLE);
         tvSost = (TextView) findViewById(R.id.tvSost);
+        lLay = (RelativeLayout) findViewById(R.id.lLayout1);
+
+        if (mRaw) {
+            tvSost.setText("Тестовый(raw) режим");
+            lLay.setVisibility(View.INVISIBLE);
+
+            return;   // !!!!!!!!! Внимание !!!!!!!
+
+        }
+
+        lLay2 = (RelativeLayout) findViewById(R.id.lLayout2);
+
         tvNeed = (TextView) findViewById(R.id.tvNeed);
         tvNeedT = (TextView) findViewById(R.id.tvNeedT);
         tvNeedAT = (TextView) findViewById(R.id.tvNeedAT);
@@ -207,9 +219,6 @@ public final class BarcodeCaptureActivity extends Activity {
 //        svHolder = sv.getHolder();
 //        svHolderCallback = new HolderCallback();
 //        svHolder.addCallback(svHolderCallback);
-
-//        mPreview.setVisibility(View.INVISIBLE);
-//        mPreview.setAlpha(0.5f);
 
         // Получаем json
 //        AsyncTask<Void, Void, String> tmp = new ParseTask("http://onbqth.com/route2.json");
@@ -390,10 +399,10 @@ public final class BarcodeCaptureActivity extends Activity {
             // we have permission, so create the camerasource
 //            boolean autoFocus = getIntent().getBooleanExtra(AutoFocus,false);
 //            boolean useFlash = getIntent().getBooleanExtra(UseFlash, false);
-            // Теперь берем из настроек
-            SharedPreferences sPref = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext());
-            boolean autoFocus = sPref.getBoolean("af", true);
-            boolean useFlash = sPref.getBoolean("fl", false);
+            // Теперь берем из настроек... в Create
+//            SharedPreferences sPref = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext());
+//            boolean autoFocus = sPref.getBoolean("af", true);
+//            boolean useFlash = sPref.getBoolean("fl", false);
 
             createCameraSource(autoFocus, useFlash);
             return;
@@ -559,7 +568,6 @@ public final class BarcodeCaptureActivity extends Activity {
     }
 
 
-
     // Статический слой
 /*
    public class HolderCallback implements SurfaceHolder.Callback {
@@ -705,10 +713,10 @@ public final class BarcodeCaptureActivity extends Activity {
                 BarcodeGraphic.trays = new JSONObject(task.getString("tray"));
                 Iterator<String> iter = BarcodeGraphic.trays.keys();
                 String s = "";
-                while (iter.hasNext())  s+= BarcodeGraphic.trays.getString(iter.next())+'\n';
+                while (iter.hasNext()) s += BarcodeGraphic.trays.getString(iter.next()) + '\n';
                 tvNeed.setText(s);
 
-                BarcodeGraphic. bcPlace = task.getString("place");
+                BarcodeGraphic.bcPlace = task.getString("place");
 
                 BarcodeGraphic.aCells = new JSONArray(task.getString("cells"));
 
@@ -717,9 +725,4 @@ public final class BarcodeCaptureActivity extends Activity {
             }
         }
     }
-//    public TextView getTvSost(){
-//        return  (TextView) findViewById(str);
-//        return  (TextView) findViewById(R.id.tvSost);
-//        tvSost.setText("Поздравляем, Вы справились с заданием.");
-//    }
 }

@@ -1,190 +1,207 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/topLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:keepScreenOn="true"
     android:orientation="vertical">
 
+
+
+    <com.google.android.gms.samples.vision.barcodereader.ui.camera.GraphicOverlay
+        android:id="@+id/graphicOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical" />
+
+
     <com.google.android.gms.samples.vision.barcodereader.ui.camera.CameraSourcePreview
         android:id="@+id/preview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="invisible"/>
 
-        <com.google.android.gms.samples.vision.barcodereader.ui.camera.GraphicOverlay
-            android:id="@+id/graphicOverlay"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:orientation="vertical" />
+    <!--
+            <com.google.android.gms.samples.vision.barcodereader.ui.camera.GraphicOverlay
+                android:id="@+id/graphicOverlay666"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical" />
 
-    </com.google.android.gms.samples.vision.barcodereader.ui.camera.CameraSourcePreview>
+        </com.google.android.gms.samples.vision.barcodereader.ui.camera.CameraSourcePreview>
+    -->
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:text="@string/stemsc_txt"
         android:textColor="@color/colorMagenta"
         android:textSize="14dp" />
 
     <TextView
-        android:id="@+id/tvSost"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView3"
-        android:gravity="center"
-        android:text="Выберите лоток"
-        android:textColor="#00ff00"
-        android:textSize="36dp" />
-
-    <TextView
-        android:id="@+id/tvTray"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:gravity="center"
-        android:text="Лоток не выбран"
-        android:textColor="#ff0000"
-        android:textSize="24dp" />
+        android:layout_width="400dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/x" />
 
     <RelativeLayout
         android:id="@+id/lLayout1"
-        android:layout_width="200dp"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_above="@+id/tvTray"
-        android:layout_below="@+id/tvSost">
+        android:layout_alignParentTop="true">
 
         <TextView
-            android:id="@+id/tvBrand"
+            android:id="@+id/tvNeedT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:background="#75efe811"
-            android:gravity="center"
-            android:text="@string/stemsc_txt"
+            android:text="Лоток:"
+            android:textColor="#000"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/tvNeed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvNeedT"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="#ff0000"
+            android:textSize="36dp" />
+
+        <TextView
+            android:id="@+id/tvNeedAT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvNeed"
+            android:text="Aрт:"
+            android:textColor="#000"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/tvNeedA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvNeedAT"
+            android:text="2517"
+            android:textAlignment="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#0307fc" />
+            android:textColor="#ff0000" />
 
         <TextView
-            android:id="@+id/tvArt"
+            android:id="@+id/tvNeedBT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvBrand"
-            android:gravity="center"
-            android:text="@string/stemsc_txt"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:layout_below="@+id/tvNeedA"
+            android:text="Бренд:"
+            android:textColor="#000"
+            android:textSize="14dp" />
 
         <TextView
-            android:id="@+id/tvCode"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvNeedB"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvArt"
-            android:background="#7549ff01"
-            android:text="@string/stemsc_txt"
-            android:textColor="#0307fc" />
+            android:layout_below="@+id/tvNeedBT"
+            android:text="2517"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#ff0000" />
 
         <TextView
-            android:id="@+id/tvName"
+            android:id="@+id/tvNeedQT"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvCode"
-            android:gravity="center"
-            android:background="#75efe811"
-            android:text="@string/stemsc_txt" />
+            android:layout_below="@+id/tvNeedB"
+            android:text="Количество:"
+            android:textColor="#000"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/tvNeedQ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvNeedQT"
+            android:text="0 из 3"
+            android:textAlignment="center"
+            android:textColor="#ff0000"
+            android:textSize="36dp" />
 
 
-        <!--
-               <ImageButton
-           android:id="@+id/imageButton"
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:layout_below="@+id/tvName"
-           app:srcCompat="@drawable/f"
-           android:contentDescription="ib" />
+        <TextView
+            android:id="@+id/tvCellT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tvCell"
+            android:text="ячейка:"
+            android:textColor="#000"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/tvCell"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tvTrayT"
+            android:text="19.25.14"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#00ff00" />
 
 
-       <ImageView
-           android:id="@+id/photo"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:layout_below="@+id/tvName"
-           android:contentDescription="@string/f"
-           app:srcCompat="@drawable/f" />
+        <TextView
+            android:id="@+id/tvTrayT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tvTray"
+            android:text="лоток:"
+            android:textColor="#000"
+            android:textSize="14dp" />
 
+        <TextView
+            android:id="@+id/tvTray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="2517"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#00ff00" />
 
-               <TextView
-                   android:id="@+id/tvDescr"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:layout_below="@+id/tvName"
-                   android:background="#7501fdcf"
-                   android:gravity="center"
-                   android:text="@string/stemsc_txt"
-                   android:textColor="#0307fc" />
-
-               <Button
-                   android:id="@+id/button2"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_alignParentLeft="true"
-                   android:layout_alignParentStart="true"
-                   android:layout_below="@+id/tvDescr"
-                   android:layout_marginTop="49dp"
-                   android:background="#7500ff04"
-                   android:onClick="BtClick"
-                   android:text="@string/ok"
-                   android:textColor="#000000" />
-       -->
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/lLayout2"
-        android:layout_width="200dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvSost"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView3"
         android:layout_toLeftOf="@+id/lLayout1"
         android:layout_toStartOf="@+id/lLayout1">
 
         <TextView
-            android:id="@+id/qNeed"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvSost"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:text="Необходимое к-во"
-            android:textColor="#0000ff"
+            android:layout_alignParentTop="true"
+            android:gravity="center"
+            android:text="Выберите лоток"
+            android:textColor="#00ff00"
             android:textSize="36dp" />
 
-        <TextView
-            android:id="@+id/qReal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/qNeed"
-            android:text="Выбрано"
-            android:textColor="#0000ff"
-            android:textSize="36dp" />
-
-        <TextView
-            android:id="@+id/qCom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/qReal"
-            android:text="(положите товар в лоток и сосканируйте штрихкод лотка) "
-            android:textColor="#00ffff"
-            android:textSize="24dp" />
     </RelativeLayout>
-
 
 
 </RelativeLayout>

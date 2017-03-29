@@ -16,14 +16,15 @@
 package com.google.android.gms.samples.vision.barcodereader;
 
 import android.content.Context;
-//import android.content.SharedPreferences;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.media.MediaPlayer;
-//import android.preference.PreferenceManager;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 
@@ -59,10 +60,6 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
 
     private volatile Barcode mBarcode;
 
-//    private boolean arr;
-//    private boolean desc;
-//    private boolean deb;
-
     private MediaPlayer mp;
     private static Bounce bounce;
 //    private Path path = new Path();
@@ -79,23 +76,18 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
     static JSONObject trays = null;
     static JSONObject route = null;
     static JSONArray aCells;
-    static String     bcPlace = null;
+    static String bcPlace = null;
 
-
-
-
-
+    private boolean mRaw;
 
     BarcodeGraphic(GraphicOverlay overlay) {
         super(overlay);
 
         // Теперь берем из настроек
-//        Resources resources = MainActivity.getContextOfApplication().getResources();
+        Resources resources = MainActivity.getContextOfApplication().getResources();
         Context applicationContext = MainActivity.getContextOfApplication();
-//        SharedPreferences sPref = PreferenceManager.getDefaultSharedPreferences(applicationContext);
-//        arr = sPref.getBoolean("arr", true);
-//        desc = sPref.getBoolean("desc", true);
-//        deb = sPref.getBoolean("deb", false);
+        SharedPreferences sPref = PreferenceManager.getDefaultSharedPreferences(applicationContext);
+        mRaw = sPref.getBoolean("raw", false);
 
 //        mCurrentColorIndex = (mCurrentColorIndex + 1) % COLOR_CHOICES.length;
 //        final int selectedColor = COLOR_CHOICES[mCurrentColorIndex];
@@ -165,10 +157,22 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
             return;
         }
 
+        RectF rect = new RectF(barcode.getBoundingBox());
+        rect.left = translateX(rect.left);
+        rect.top = translateY(rect.top);
+        rect.right = translateX(rect.right);
+        rect.bottom = translateY(rect.bottom);
+
+        if(mRaw){
+            BarcodeCaptureActivity.tvSost.setText(barcode.rawValue);
+            canvas.drawRect(rect, mRectPaint);
+            return;
+        }
+
         if (trays == null
-                ||  aCells == null
-                ||  bcPlace == null
-        ) {
+                || aCells == null
+                || bcPlace == null
+                ) {
             Paint mTextStem = new Paint();
             mTextStem.setColor(Color.RED);
             mTextStem.setTextSize(36.0f);
@@ -181,16 +185,9 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
         int bc = 999;
         JSONObject j = null;
 
-        RectF rect = new RectF(barcode.getBoundingBox());
-
-        rect.left = translateX(rect.left);
-        rect.top = translateY(rect.top);
-        rect.right = translateX(rect.right);
-        rect.bottom = translateY(rect.bottom);
-
         switch (step) {
             case 0:   // Выбираем лоток
-                if (trays != null && !trays.isNull(barcode.rawValue)) {
+                if (!trays.isNull(barcode.rawValue)) {
                     // лоток "наш"
                     try {
                         sTray = trays.getString(barcode.rawValue);
@@ -205,7 +202,7 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
                         BarcodeCaptureActivity.tvTrayT.setVisibility(View.VISIBLE);
 
                         try {
-                            JSONObject item0 =aCells.getJSONObject(0);
+                            JSONObject item0 = aCells.getJSONObject(0);
                             BarcodeCaptureActivity.tvNeed.setText(item0.getString("name"));
                             route = item0.getJSONObject("route");
                         } catch (JSONException e) {
