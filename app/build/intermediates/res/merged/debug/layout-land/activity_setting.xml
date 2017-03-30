@@ -23,7 +23,14 @@
         android:text="@string/use_flash"
         android:id="@+id/m_use_flash"
         android:checked="false" />
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RAW (Test) режим"
+        android:id="@+id/m_raw"
+        android:checked="false" />
 
+<!--
     <TextView
         android:text="Выводить"
         android:layout_width="match_parent"
@@ -51,6 +58,7 @@
         android:text="Значение класса"
         android:id="@+id/use_deb"
         android:checked="false" />
+-->
 
     <LinearLayout
         android:orientation="horizontal"

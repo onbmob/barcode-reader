@@ -1,4 +1,4 @@
-#Tue Mar 28 20:14:40 EEST 2017
+#Wed Mar 29 18:37:54 EEST 2017
 base.0=C\:\\Users\\ONBmob\\AndroidStudioProjects\\barcode-reader\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main
 renamed.0=classes.dex
 file.0=C\:\\Users\\ONBmob\\AndroidStudioProjects\\barcode-reader\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main\\classes.dex
