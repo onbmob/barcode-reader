@@ -26,11 +26,11 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.PixelFormat;
+//import android.graphics.Bitmap;
+//import android.graphics.Canvas;
+//import android.graphics.Color;
+//import android.graphics.Paint;
+//import android.graphics.PixelFormat;
 import android.hardware.Camera;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -52,13 +52,13 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.common.api.CommonStatusCodes;
+//import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.samples.vision.barcodereader.ui.camera.CameraSource;
 import com.google.android.gms.samples.vision.barcodereader.ui.camera.CameraSourcePreview;
 
 import com.google.android.gms.samples.vision.barcodereader.ui.camera.GraphicOverlay;
 import com.google.android.gms.vision.MultiProcessor;
-import com.google.android.gms.vision.barcode.Barcode;
+//import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import org.json.JSONArray;
@@ -69,7 +69,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
+//import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -90,9 +90,6 @@ public final class BarcodeCaptureActivity extends Activity {
     // permission request codes need to be < 256
     private static final int RC_HANDLE_CAMERA_PERM = 2;
 
-    // constants used to pass extra data in the intent
-//    public static final String AutoFocus = "AutoFocus"; // уже не передаем
-//    public static final String UseFlash = "UseFlash";
     public static final String BarcodeObject = "Barcode";
 
     private CameraSource mCameraSource;
@@ -103,11 +100,6 @@ public final class BarcodeCaptureActivity extends Activity {
     // helper objects for detecting taps and pinches.
     private ScaleGestureDetector scaleGestureDetector;
     private GestureDetector gestureDetector;
-
-    // surfaceView
-//    private SurfaceView sv;
-//    private SurfaceHolder svHolder;
-//    private HolderCallback svHolderCallback;
 
     static RelativeLayout lLay;
     static RelativeLayout lLay2;
@@ -213,12 +205,6 @@ public final class BarcodeCaptureActivity extends Activity {
 
         BarcodeGraphic.step = 0;
         BarcodeGraphic.countGoods = 0;
-
-        // surfaceView
-//        sv = (SurfaceView) findViewById(R.id.surfaceView);
-//        svHolder = sv.getHolder();
-//        svHolderCallback = new HolderCallback();
-//        svHolder.addCallback(svHolderCallback);
 
         // Получаем json
 //        AsyncTask<Void, Void, String> tmp = new ParseTask("http://onbqth.com/route2.json");
@@ -396,14 +382,6 @@ public final class BarcodeCaptureActivity extends Activity {
 
         if (grantResults.length != 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             Log.d(TAG, "Camera permission granted - initialize the camera source");
-            // we have permission, so create the camerasource
-//            boolean autoFocus = getIntent().getBooleanExtra(AutoFocus,false);
-//            boolean useFlash = getIntent().getBooleanExtra(UseFlash, false);
-            // Теперь берем из настроек... в Create
-//            SharedPreferences sPref = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext());
-//            boolean autoFocus = sPref.getBoolean("af", true);
-//            boolean useFlash = sPref.getBoolean("fl", false);
-
             createCameraSource(autoFocus, useFlash);
             return;
         }
@@ -449,69 +427,6 @@ public final class BarcodeCaptureActivity extends Activity {
             }
         }
     }
-
-    /*
-     * onTap returns the tapped barcode result to the calling Activity.
-     *
-     * @param rawX - the raw position of the tap
-     * @param rawY - the raw position of the tap.
-     * @return true if the activity is ending.
-     */
-/*
-    private boolean onTap(float rawX, float rawY) {
-        // Find tap point in preview frame coordinates.
-        int[] location = new int[2];
-        mGraphicOverlay.getLocationOnScreen(location);
-        float x = (rawX - location[0]) / mGraphicOverlay.getWidthScaleFactor();
-        float y = (rawY - location[1]) / mGraphicOverlay.getHeightScaleFactor();
-
-        // Find the barcode whose center is closest to the tapped point.
-        Barcode best = null;
-        float bestDistance = Float.MAX_VALUE;
-        for (BarcodeGraphic graphic : mGraphicOverlay.getGraphics()) {
-            Barcode barcode = graphic.getBarcode();
-            if (barcode.getBoundingBox().contains((int) x, (int) y)) {
-                // Exact hit, no need to keep looking.
-                best = barcode;
-                break;
-            }
-            float dx = x - barcode.getBoundingBox().centerX();
-            float dy = y - barcode.getBoundingBox().centerY();
-            float distance = (dx * dx) + (dy * dy);  // actually squared distance
-            if (distance < bestDistance) {
-                best = barcode;
-                bestDistance = distance;
-            }
-        }
-
-        if (best != null) {
-            Intent data = new Intent();
-
-            data.putExtra(BarcodeObject, best);
-
-            mPreview.setDrawingCacheEnabled(true);
-            mPreview.buildDrawingCache(true);
-            Bitmap b = mPreview.getDrawingCache();
-            data.putExtra("img", b);
-
-            setResult(CommonStatusCodes.SUCCESS, data);
-            finish();
-            return true;
-        }
-        return false;
-    }
-*/
-
-//    public static void BtClick(View view) {
-//        lLay.setVisibility(View.INVISIBLE);
-//    }
-
-//    private class CaptureGestureListener extends GestureDetector.SimpleOnGestureListener {
-//        @Override
-//        public boolean onSingleTapConfirmed(MotionEvent e) {
-//            return onTap(e.getRawX(), e.getRawY()) || super.onSingleTapConfirmed(e);
-//        }
-//    }
 
     private class ScaleListener implements ScaleGestureDetector.OnScaleGestureListener {
 
@@ -566,100 +481,6 @@ public final class BarcodeCaptureActivity extends Activity {
             mCameraSource.doZoom(detector.getScaleFactor());
         }
     }
-
-
-    // Статический слой
-/*
-   public class HolderCallback implements SurfaceHolder.Callback {
-
-        private DrawThread drawThread;
-
-        @Override
-        public void surfaceCreated(SurfaceHolder surfaceHolder) {
-
-            Log.d("HolderCallback", "surfaceCreated");
-
-            drawThread = new DrawThread(surfaceHolder);
-            drawThread.setRunning(true);
-//            drawThread.start();
-
-        }
-
-        @Override
-        public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2) {
-            Log.d("HolderCallback", "surfaceChanged");
-
-            surfaceHolder.setFormat(PixelFormat.TRANSLUCENT);
-
-            Canvas svCanvas = surfaceHolder.lockCanvas();
-            Paint mTextStem = new Paint();
-            mTextStem.setColor(Color.MAGENTA);
-            mTextStem.setTextSize(36.0f);
-            svCanvas.drawText("Stemsc. Pre-sale.WMS AR", 320, 340, mTextStem);
-            surfaceHolder.unlockCanvasAndPost(svCanvas);
-
-        }
-
-        @Override
-        public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-            Log.d("HolderCallback", "surfaceDestroyed");
-            boolean retry = true;
-            drawThread.setRunning(false);
-            while (retry) {
-                try {
-                    drawThread.join();
-                    retry = false;
-                } catch (InterruptedException e) {
-                }
-            }
-
-        }
-
-
-        private class DrawThread extends Thread {
-            private boolean running = false;
-            private SurfaceHolder surfaceHolder;
-
-            public DrawThread(SurfaceHolder surfaceHolder) {
-                this.surfaceHolder = surfaceHolder;
-            }
-
-            public void setRunning(boolean running) {
-                this.running = running;
-            }
-
-            @Override
-            public void run() {
-                Canvas canvas;
-                while (running) {
-                    canvas = null;
-                    try {
-                        canvas = surfaceHolder.lockCanvas(null);
-                        if (canvas == null)
-                            continue;
-//                        canvas.drawColor(Color.GREEN);
-                        Paint mTextStem = new Paint();
-                        mTextStem.setColor(Color.RED);
-                        mTextStem.setTextSize(36.0f);
-                        canvas.drawText("Thread Stemsc. Pre-sale.WMS AR", 20, 40, mTextStem);
-//                        Log.route("DrawThread","drawText============================================");
-                    }
-//                    catch (Exception e) {
-//                        Log.route("DrawThread","+++++++++++++++++++++++++++++++++++++++++++");
-//                    }
-                    finally {
-                        if (canvas != null) {
-                            surfaceHolder.unlockCanvasAndPost(canvas);
-                            Log.d("DrawThread", "+++++++++++++++++++++++++++++++++++++++++++");
-                        }
-                    }
-                }
-            }
-        }
-
-
-    }
-*/
 
     // получаем JSON
     private class ParseTask extends AsyncTask<Void, Void, String> {

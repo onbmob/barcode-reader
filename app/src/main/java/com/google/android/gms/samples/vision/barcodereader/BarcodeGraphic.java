@@ -35,8 +35,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-//import static com.google.android.gms.samples.vision.barcodereader.BarcodeCaptureActivity.aCells;
-
 /**
  * Graphic instance for rendering barcode position, size, and ID within an associated graphic
  * overlay view.
@@ -45,12 +43,6 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
     private static final String TAG = "BarcodeGrahpic";
     private int mId;
 
-    //    private static final int COLOR_CHOICES[] = {
-//            Color.BLUE,
-//            Color.CYAN,
-//            Color.GREEN
-//    };
-//    private static int mCurrentColorIndex = 0;
     private static Paint rTxtP;
     private static Paint gTxtP;
     private static Paint mRectPaint;
@@ -62,7 +54,6 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
 
     private MediaPlayer mp;
     private static Bounce bounce;
-//    private Path path = new Path();
 
     static int step = 0;
     static int countCells = 0;
@@ -88,12 +79,7 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
         Context applicationContext = MainActivity.getContextOfApplication();
         SharedPreferences sPref = PreferenceManager.getDefaultSharedPreferences(applicationContext);
         mRaw = sPref.getBoolean("raw", false);
-
-//        mCurrentColorIndex = (mCurrentColorIndex + 1) % COLOR_CHOICES.length;
-//        final int selectedColor = COLOR_CHOICES[mCurrentColorIndex];
-
         mRectPaint = new Paint();
-//        mRectPaint.setColor(selectedColor);
         mRectPaint.setColor(Color.RED);
         mRectPaint.setStyle(Paint.Style.STROKE);
         mRectPaint.setStrokeWidth(4.0f);
@@ -240,9 +226,21 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
                     switch (bc) {
                         case 0:
                             if (bounce.check(barcode.rawValue)) { // Поймали
-                                BarcodeCaptureActivity.tvSost.setText("Выберите товар");
+                                BarcodeCaptureActivity.tvCell.setText(BarcodeCaptureActivity.tvNeed.getText());
+                                BarcodeCaptureActivity.tvCell.setVisibility(View.VISIBLE);
+                                BarcodeCaptureActivity.tvCellT.setVisibility(View.VISIBLE);
+
                                 mp.start();
                                 step = 2;
+
+                                try {
+                                    JSONObject item0 = aCells.getJSONObject(0);
+                                    BarcodeCaptureActivity.tvNeed.setText(item0.getString("name"));
+                                    route = item0.getJSONObject("route");
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
                             } else { // Фильтруем дребезг
                                 canvas.drawCircle(rect.centerX(), rect.centerY(), rect.height() / 2, gRectP);
                                 canvas.drawText("Целевая ячейка " + barcode.rawValue + bounce.getCount(), rect.left, rect.top - 24, gTxtP);

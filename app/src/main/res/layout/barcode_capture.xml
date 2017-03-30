@@ -9,7 +9,21 @@
     android:keepScreenOn="true"
     android:orientation="vertical">
 
+<!--
+        <com.google.android.gms.samples.vision.barcodereader.ui.camera.GraphicOverlay
+            android:id="@+id/graphicOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical" />
+-->
 
+
+    <com.google.android.gms.samples.vision.barcodereader.ui.camera.CameraSourcePreview
+        android:id="@+id/preview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <com.google.android.gms.samples.vision.barcodereader.ui.camera.GraphicOverlay
             android:id="@+id/graphicOverlay"
@@ -18,24 +32,7 @@
             android:layout_alignParentTop="true"
             android:orientation="vertical" />
 
-
-    <com.google.android.gms.samples.vision.barcodereader.ui.camera.CameraSourcePreview
-        android:id="@+id/preview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="invisible"/>
-
-<!--
-        <com.google.android.gms.samples.vision.barcodereader.ui.camera.GraphicOverlay
-            android:id="@+id/graphicOverlay666"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:orientation="vertical" />
-
     </com.google.android.gms.samples.vision.barcodereader.ui.camera.CameraSourcePreview>
--->
 
     <TextView
         android:id="@+id/textView3"
