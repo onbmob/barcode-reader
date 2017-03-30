@@ -209,9 +209,7 @@ public final class BarcodeCaptureActivity extends Activity {
         // Получаем json
 //        AsyncTask<Void, Void, String> tmp = new ParseTask("http://onbqth.com/route2.json");
 //        AsyncTask<Void, Void, String> dStr = tmp.execute();
-        new ParseTask("http://onbqth.com/task2.json").execute();
-
-
+        new ParseTask("http://onbqth.com/ogder.json").execute();
     }
 
     /**

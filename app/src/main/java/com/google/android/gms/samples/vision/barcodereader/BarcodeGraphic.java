@@ -48,6 +48,7 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
     private static Paint mRectPaint;
     private static Paint mTextPaint;
     private static Paint gRectP;
+    private static Paint bRectP;
     private static Paint rRectP;
 
     private volatile Barcode mBarcode;
@@ -102,6 +103,9 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
         gRectP.setStyle(Paint.Style.FILL_AND_STROKE);
         gRectP.setColor(Color.GREEN);
         gRectP.setAlpha(120);
+
+        bRectP = new Paint(gRectP);
+        bRectP.setColor(Color.BLUE);
 
         rRectP = new Paint(gRectP);
         rRectP.setColor(Color.RED);
@@ -242,7 +246,7 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
                                 }
 
                             } else { // Фильтруем дребезг
-                                canvas.drawCircle(rect.centerX(), rect.centerY(), rect.height() / 2, gRectP);
+                                canvas.drawCircle(rect.centerX(), rect.centerY(), rect.height() / 2, bRectP);
                                 canvas.drawText("Целевая ячейка " + barcode.rawValue + bounce.getCount(), rect.left, rect.top - 24, gTxtP);
                             }
                             break;
@@ -303,7 +307,7 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
                             break;
                         default:
                     }
-                    canvas.drawPath(path, gRectP);
+                    canvas.drawPath(path, bRectP);
                     return;
                 }
                 canvas.drawRect(rect, mRectPaint);
