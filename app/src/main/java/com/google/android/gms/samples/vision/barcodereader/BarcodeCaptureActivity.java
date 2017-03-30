@@ -203,13 +203,10 @@ public final class BarcodeCaptureActivity extends Activity {
         tvTrayT.setVisibility(View.INVISIBLE);
         tvTray.setVisibility(View.INVISIBLE);
 
-        BarcodeGraphic.step = 0;
-        BarcodeGraphic.countGoods = 0;
-
         // Получаем json
 //        AsyncTask<Void, Void, String> tmp = new ParseTask("http://onbqth.com/route2.json");
 //        AsyncTask<Void, Void, String> dStr = tmp.execute();
-        new ParseTask("http://onbqth.com/ogder.json").execute();
+        new ParseTask("http://onbqth.com/order.json").execute();
     }
 
     /**
@@ -527,17 +524,19 @@ public final class BarcodeCaptureActivity extends Activity {
         protected void onPostExecute(String strJson) {
             super.onPostExecute(strJson);
             try {
-                JSONObject task = new JSONObject(strJson);
+                JSONObject order = new JSONObject(strJson);
 
-                BarcodeGraphic.trays = new JSONObject(task.getString("tray"));
+                BarcodeGraphic.trays = new JSONObject(order.getString("trays"));
                 Iterator<String> iter = BarcodeGraphic.trays.keys();
                 String s = "";
                 while (iter.hasNext()) s += BarcodeGraphic.trays.getString(iter.next()) + '\n';
                 tvNeed.setText(s);
 
-                BarcodeGraphic.bcPlace = task.getString("place");
+                BarcodeGraphic.bcPlace = order.getString("place");
 
-                BarcodeGraphic.aCells = new JSONArray(task.getString("cells"));
+                BarcodeGraphic.aTasks = new JSONArray(order.getString("tasks"));
+
+                BarcodeGraphic.step = 0;
 
             } catch (JSONException e) {
                 e.printStackTrace();

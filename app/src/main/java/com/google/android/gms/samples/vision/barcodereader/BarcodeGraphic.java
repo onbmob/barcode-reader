@@ -56,19 +56,26 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
     private MediaPlayer mp;
     private static Bounce bounce;
 
-    static int step = 0;
-    static int countCells = 0;
-    static int countGoods = 0;
+//    Заполняется при получении JSON
+    static JSONObject trays = null;  // Доступные лотки
+    static String bcPlace = null;    // Зона отгрузки
+    static JSONArray aTasks = null;  // Задачи
+    static int step = 0;    // и это
+
+    private static int countTasks = 0;
+    private static int countGoods = 0;
 
     private static String bcTray = "";
-    private static String sTray = "";
+    private static String bcTargetCell = "";
     private static String bcGoods = "";
+
+    private static String sTray = "";
+
     private static int needGoods = 0;
 
-    static JSONObject trays = null;
-    static JSONObject route = null;
-    static JSONArray aCells;
-    static String bcPlace = null;
+
+    private static JSONObject route = null;
+
 
     private boolean mRaw;
 
@@ -160,7 +167,7 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
         }
 
         if (trays == null
-                || aCells == null
+                || aTasks == null
                 || bcPlace == null
                 ) {
             Paint mTextStem = new Paint();
@@ -186,15 +193,23 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
                     }
 
                     if (bounce.check(sTray)) { // Поймали
-                        BarcodeCaptureActivity.tvSost.setText("Подойдите к ячейке");
-                        BarcodeCaptureActivity.tvTray.setText(sTray);
-                        BarcodeCaptureActivity.tvTray.setVisibility(View.VISIBLE);
-                        BarcodeCaptureActivity.tvTrayT.setVisibility(View.VISIBLE);
-
                         try {
-                            JSONObject item0 = aCells.getJSONObject(0);
-                            BarcodeCaptureActivity.tvNeed.setText(item0.getString("name"));
-                            route = item0.getJSONObject("route");
+                            countTasks=0;
+                            countGoods=0;
+
+                            JSONObject task = aTasks.getJSONObject(countTasks);
+                            JSONObject cell = new JSONObject(task.getString("cell"));
+
+                            route = cell.getJSONObject("route");
+                            bcTargetCell = cell.getString("cellBarCode");
+
+                            BarcodeCaptureActivity.tvNeedT.setText("Ячейка");
+                            BarcodeCaptureActivity.tvNeed.setText(cell.getString("name"));
+                            BarcodeCaptureActivity.tvSost.setText(""+task.getString("taskNumber")+" Подойдите к ячейке");
+                            BarcodeCaptureActivity.tvTray.setText(sTray);
+                            BarcodeCaptureActivity.tvTray.setVisibility(View.VISIBLE);
+                            BarcodeCaptureActivity.tvTrayT.setVisibility(View.VISIBLE);
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -205,8 +220,7 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
                         canvas.drawRect(rect, gRectP);
                         canvas.drawText("Доступный лоток " + sTray + bounce.getCount(), rect.left, rect.top - 24, gTxtP);
                     }
-                } else {
-                    // лоток "левый"
+                } else { // лоток "левый"
                     bounce.reset();
                     canvas.drawRect(rect, rRectP);
                     canvas.drawText("Этот лоток недоступен", rect.left, rect.top - 24, rTxtP);
@@ -214,8 +228,33 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
                 break;
 
 
-            case 1:   //Распознаем стрелки
-                canvas.drawText(barcode.rawValue, rect.left, rect.bottom, mTextPaint);
+            case 1:   //Распознаем стрелки и целевую ячейку
+
+                if (barcode.rawValue.equals(bcTargetCell)){ //Целевая ячейка
+
+                    if (bounce.check(barcode.rawValue)) { // Поймали
+                        mp.start();
+                        step = 2;
+
+                        try {
+                            JSONObject task = aTasks.getJSONObject(countTasks);
+                            JSONArray goods = task.getJSONArray("goods");
+
+                            JSONObject item = goods.getJSONObject(countGoods);
+                            BarcodeCaptureActivity.tvSost.setText(item.getString("name"));
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    } else { // Фильтруем дребезг
+                        canvas.drawCircle(rect.centerX(), rect.centerY(), rect.height() / 2, gRectP);
+                        canvas.drawText("Целевая ячейка " + barcode.rawValue + bounce.getCount(), rect.left, rect.top - 24, gTxtP);
+                    }
+
+                    return;
+                }
+
                 if (route != null && !route.isNull(barcode.rawValue)) {
                     try {
                         bc = route.getInt(barcode.rawValue);
@@ -229,27 +268,8 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
 
                     switch (bc) {
                         case 0:
-                            if (bounce.check(barcode.rawValue)) { // Поймали
-                                BarcodeCaptureActivity.tvCell.setText(BarcodeCaptureActivity.tvNeed.getText());
-                                BarcodeCaptureActivity.tvCell.setVisibility(View.VISIBLE);
-                                BarcodeCaptureActivity.tvCellT.setVisibility(View.VISIBLE);
-
-                                mp.start();
-                                step = 2;
-
-                                try {
-                                    JSONObject item0 = aCells.getJSONObject(0);
-                                    BarcodeCaptureActivity.tvNeed.setText(item0.getString("name"));
-                                    route = item0.getJSONObject("route");
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-
-                            } else { // Фильтруем дребезг
-                                canvas.drawCircle(rect.centerX(), rect.centerY(), rect.height() / 2, bRectP);
-                                canvas.drawText("Целевая ячейка " + barcode.rawValue + bounce.getCount(), rect.left, rect.top - 24, gTxtP);
-                            }
-                            break;
+                            canvas.drawCircle(rect.centerX(), rect.centerY(), rect.height() / 2, bRectP);
+                            return;
                         case 1:
                             path.moveTo(rect.right + a, rect.centerY() + a); // 1
                             path.lineTo(rect.left + a, rect.centerY() + a); // 2
