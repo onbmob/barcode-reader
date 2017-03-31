@@ -17,7 +17,7 @@ package com.google.android.gms.samples.vision.barcodereader;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
+//import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -56,7 +56,7 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
     private MediaPlayer mp;
     private static Bounce bounce;
 
-//    Заполняется при получении JSON
+    //    Заполняется при получении JSON
     static JSONObject trays = null;  // Доступные лотки
     static String bcPlace = null;    // Зона отгрузки
     static JSONArray aTasks = null;  // Задачи
@@ -64,18 +64,15 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
 
     private static int countTasks = 0;
     private static int countGoods = 0;
+    private static int quantityGoods = 0;
 
-    private static String bcTray = "";
+    //    private static String bcTray = "";
     private static String bcTargetCell = "";
-    private static String bcGoods = "";
 
     private static String sTray = "";
 
-    private static int needGoods = 0;
-
-
     private static JSONObject route = null;
-
+    private static JSONArray goodsBarCodes = null;
 
     private boolean mRaw;
 
@@ -83,7 +80,7 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
         super(overlay);
 
         // Теперь берем из настроек
-        Resources resources = MainActivity.getContextOfApplication().getResources();
+//        Resources resources = MainActivity.getContextOfApplication().getResources();
         Context applicationContext = MainActivity.getContextOfApplication();
         SharedPreferences sPref = PreferenceManager.getDefaultSharedPreferences(applicationContext);
         mRaw = sPref.getBoolean("raw", false);
@@ -160,7 +157,7 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
         rect.right = translateX(rect.right);
         rect.bottom = translateY(rect.bottom);
 
-        if(mRaw){
+        if (mRaw) {
             BarcodeCaptureActivity.tvSost.setText(barcode.rawValue);
             canvas.drawRect(rect, mRectPaint);
             return;
@@ -174,13 +171,9 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
             mTextStem.setColor(Color.RED);
             mTextStem.setTextSize(36.0f);
             canvas.drawText("Нет данных AJAX", 20, 80, mTextStem);
-            Log.d(TAG, "=+=== Нет данных AJAX =====  " + barcode.rawValue);
+            Log.d(TAG, "==== Нет данных AJAX =====  " + barcode.rawValue);
             return;
         }
-
-
-        int bc = 999;
-        JSONObject j = null;
 
         switch (step) {
             case 0:   // Выбираем лоток
@@ -194,8 +187,8 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
 
                     if (bounce.check(sTray)) { // Поймали
                         try {
-                            countTasks=0;
-                            countGoods=0;
+                            countTasks = 0;
+                            countGoods = 0;
 
                             JSONObject task = aTasks.getJSONObject(countTasks);
                             JSONObject cell = new JSONObject(task.getString("cell"));
@@ -205,17 +198,18 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
 
                             BarcodeCaptureActivity.tvNeedT.setText("Ячейка");
                             BarcodeCaptureActivity.tvNeed.setText(cell.getString("name"));
-                            BarcodeCaptureActivity.tvSost.setText(""+task.getString("taskNumber")+" Подойдите к ячейке");
+                            BarcodeCaptureActivity.tvSost.setText("" + task.getString("taskNumber") + " Подойдите к ячейке");
                             BarcodeCaptureActivity.tvTray.setText(sTray);
                             BarcodeCaptureActivity.tvTray.setVisibility(View.VISIBLE);
                             BarcodeCaptureActivity.tvTrayT.setVisibility(View.VISIBLE);
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                         mp.start();
                         step = 1;
-                        bcTray = barcode.rawValue;
+//                        bcTray = barcode.rawValue;
                     } else { // Фильтруем дребезг
                         canvas.drawRect(rect, gRectP);
                         canvas.drawText("Доступный лоток " + sTray + bounce.getCount(), rect.left, rect.top - 24, gTxtP);
@@ -230,11 +224,13 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
 
             case 1:   //Распознаем стрелки и целевую ячейку
 
-                if (barcode.rawValue.equals(bcTargetCell)){ //Целевая ячейка
+                if (barcode.rawValue.equals(bcTargetCell)) { //Целевая ячейка
 
                     if (bounce.check(barcode.rawValue)) { // Поймали
-                        mp.start();
-                        step = 2;
+
+                        BarcodeCaptureActivity.tvCell.setText(BarcodeCaptureActivity.tvNeed.getText());
+                        BarcodeCaptureActivity.tvCellT.setVisibility(View.VISIBLE);
+                        BarcodeCaptureActivity.tvCell.setVisibility(View.VISIBLE);
 
                         try {
                             JSONObject task = aTasks.getJSONObject(countTasks);
@@ -242,10 +238,28 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
 
                             JSONObject item = goods.getJSONObject(countGoods);
                             BarcodeCaptureActivity.tvSost.setText(item.getString("name"));
+                            BarcodeCaptureActivity.tvNeedT.setText("Код");
+                            BarcodeCaptureActivity.tvNeed.setText(item.getString("sku"));
+
+                            BarcodeCaptureActivity.tvNeedA.setText(item.getString("article"));
+                            BarcodeCaptureActivity.tvNeedAT.setVisibility(View.VISIBLE);
+                            BarcodeCaptureActivity.tvNeedA.setVisibility(View.VISIBLE);
+
+                            BarcodeCaptureActivity.tvNeedB.setText(item.getString("brand"));
+                            BarcodeCaptureActivity.tvNeedBT.setVisibility(View.VISIBLE);
+                            BarcodeCaptureActivity.tvNeedB.setVisibility(View.VISIBLE);
+
+                            quantityGoods = 0;
+                            goodsBarCodes = item.getJSONArray("goodsBarCodes");
+                            BarcodeCaptureActivity.tvNeedQ.setText("" + quantityGoods + " из " + item.getString("quantity"));
+                            BarcodeCaptureActivity.tvNeedQT.setVisibility(View.VISIBLE);
+                            BarcodeCaptureActivity.tvNeedQ.setVisibility(View.VISIBLE);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                        mp.start();
+                        step = 2;
 
                     } else { // Фильтруем дребезг
                         canvas.drawCircle(rect.centerX(), rect.centerY(), rect.height() / 2, gRectP);
@@ -253,9 +267,10 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
                     }
 
                     return;
-                }
+                } else bounce.reset();
 
                 if (route != null && !route.isNull(barcode.rawValue)) {
+                    int bc = 999;
                     try {
                         bc = route.getInt(barcode.rawValue);
                     } catch (JSONException e) {
@@ -333,63 +348,87 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
                 canvas.drawRect(rect, mRectPaint);
                 canvas.drawText(barcode.rawValue, rect.left, rect.bottom, mTextPaint);
                 break;
-/*
-            case 2:  // Распознаем товар
-                if (BarcodeCaptureActivity.goods != null && !BarcodeCaptureActivity.goods.isNull(barcode.rawValue)) {
-                    // есть код
-                    if (BarcodeCaptureActivity.lLay.getVisibility() != View.VISIBLE) {
 
+            case 2:  // Распознаем товар
+                boolean isBC = false;
+                try {
+                    for (int i = 0; i < goodsBarCodes.length(); i++) {
+                        if (barcode.rawValue.equals(goodsBarCodes.getString(i))) {
+                            isBC = true;
+                            break;
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                if (isBC) { //Наш товар
+
+                    if (bounce.check(barcode.rawValue)) { // Поймали
                         try {
-                            String sbc = BarcodeCaptureActivity.goods.getString(barcode.rawValue);
-                            j = new JSONObject(sbc);
-                            if (!j.isNull("code"))
-                                BarcodeCaptureActivity.tvCode.setText(j.getString("code"));
-                            if (!j.isNull("brand"))
-                                BarcodeCaptureActivity.tvBrand.setText(j.getString("brand"));
-                            if (!j.isNull("article"))
-                                BarcodeCaptureActivity.tvArt.setText(j.getString("article"));
-                            if (!j.isNull("name"))
-                                BarcodeCaptureActivity.tvName.setText(j.getString("name"));
-                            if (!j.isNull("quantity")) {
-                                BarcodeCaptureActivity.qNeed.setText("Необходимо " + j.getString("quantity") + " шт.");
-                                needGoods = j.getInt("quantity");
+                            JSONObject task = aTasks.getJSONObject(countTasks);
+                            JSONArray goods = task.getJSONArray("goods");
+                            JSONObject item = goods.getJSONObject(countGoods);
+                            if (item.getInt("quantity") > ++quantityGoods) {
+                                BarcodeCaptureActivity.tvNeedQ.setText("" + quantityGoods + " из " + item.getString("quantity"));
+                            } else {
+                                // Набрались товаров
+                                if (++countGoods < goods.length()) {
+
+                                    // переходим к следующему типу товара
+                                    item = goods.getJSONObject(countGoods);
+                                    BarcodeCaptureActivity.tvSost.setText(item.getString("name"));
+                                    BarcodeCaptureActivity.tvNeed.setText(item.getString("sku"));
+                                    BarcodeCaptureActivity.tvNeedA.setText(item.getString("article"));
+                                    BarcodeCaptureActivity.tvNeedB.setText(item.getString("brand"));
+                                    quantityGoods = 0;
+                                    goodsBarCodes = item.getJSONArray("goodsBarCodes");
+                                    BarcodeCaptureActivity.tvNeedQ.setText("" + quantityGoods + " из " + item.getString("quantity"));
+                                } else {
+                                    if (++countTasks < task.length()) {
+
+                                        // переходим к следующей задаче
+                                        countGoods = 0;
+
+                                        task = aTasks.getJSONObject(countTasks);
+                                        JSONObject cell = new JSONObject(task.getString("cell"));
+
+                                        route = cell.getJSONObject("route");
+                                        bcTargetCell = cell.getString("cellBarCode");
+
+                                        BarcodeCaptureActivity.tvNeedT.setText("Ячейка");
+                                        BarcodeCaptureActivity.tvNeed.setText(cell.getString("name"));
+                                        BarcodeCaptureActivity.tvSost.setText("" + task.getString("taskNumber") + " Подойдите к ячейке");
+
+                                        BarcodeCaptureActivity.tvNeedAT.setVisibility(View.INVISIBLE);
+                                        BarcodeCaptureActivity.tvNeedA.setVisibility(View.INVISIBLE);
+                                        BarcodeCaptureActivity.tvNeedBT.setVisibility(View.INVISIBLE);
+                                        BarcodeCaptureActivity.tvNeedB.setVisibility(View.INVISIBLE);
+                                        BarcodeCaptureActivity.tvNeedQT.setVisibility(View.INVISIBLE);
+                                        BarcodeCaptureActivity.tvNeedQ.setVisibility(View.INVISIBLE);
+                                        BarcodeCaptureActivity.tvCellT.setVisibility(View.INVISIBLE);
+                                        BarcodeCaptureActivity.tvCell.setVisibility(View.INVISIBLE);
+
+                                        step = 1;
+
+                                    } else {
+                                        // Харвейстер полон и идет на базу
+                                        step = 5;
+                                        BarcodeCaptureActivity.tvSost.setText("Доставте лоток в зону погрузки.");
+                                        BarcodeCaptureActivity.lLay.setVisibility(View.INVISIBLE);
+                                    }
+                                }
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        BarcodeCaptureActivity.tvSost.setText("Положите товар в лоток");
-                        BarcodeCaptureActivity.qReal.setText("");
                         mp.start();
-                        bcGoods = barcode.rawValue;
-                        step = 3;
-                        BarcodeCaptureActivity.lLay.setVisibility(View.VISIBLE);
-                        BarcodeCaptureActivity.lLay2.setVisibility(View.VISIBLE);
-//          canvas.drawBitmap(BitmapFactory.decodeResource( resources, R.mipmap.png2),rect.left,rect.top,null);
+                    } else { // Фильтруем дребезг
+                        canvas.drawRect(rect, gRectP);
+                        canvas.drawText("Заказанный товар " + barcode.rawValue + bounce.getCount(), rect.left, rect.top - 24, gTxtP);
                     }
+
                     return;
-                }
-                break;
-
-            case 3:  // Наполняем лоток (лоток)
-                if (bcTray.equals(barcode.rawValue)) {
-                    if (bounce.check(bcTray)) { // Поймали
-                        mp.start();
-                        countGoods++;
-                        if (countGoods == needGoods) {
-                            step = 5;
-                            mp.start();
-                            BarcodeCaptureActivity.tvSost.setText("Доставте лоток в зону погрузки.");
-                            BarcodeCaptureActivity.lLay.setVisibility(View.INVISIBLE);
-                            BarcodeCaptureActivity.lLay2.setVisibility(View.INVISIBLE);
-                        } else {
-                            step = 4;
-                            BarcodeCaptureActivity.tvSost.setText("Возьмите товар с ячейки");
-                            BarcodeCaptureActivity.qReal.setText("Выбрано " + countGoods + " шт.");
-                        }
-                    } else { // Фильтруем дребезг
-                        canvas.drawRect(rect, gRectP);
-                        canvas.drawText("Наш лоток " + sTray + bounce.getCount(), rect.left, rect.top - 24, gTxtP);
-                    }
                 } else {
                     bounce.reset();
                     canvas.drawRect(rect, mRectPaint);
@@ -397,24 +436,6 @@ class BarcodeGraphic extends GraphicOverlay.Graphic {
                 }
                 break;
 
-            case 4:  // Наполняем лоток (ячейка)
-                if (bcGoods.equals(barcode.rawValue)) {
-                    if (bounce.check(bcGoods)) { // Поймали
-                        BarcodeCaptureActivity.tvSost.setText("Положите товар в лоток");
-                        mp.start();
-                        step = 3;
-                    } else { // Фильтруем дребезг
-                        canvas.drawRect(rect, gRectP);
-                        canvas.drawText("Наш товар" + bounce.getCount(), rect.left, rect.top - 24, gTxtP);
-                    }
-                } else {
-                    bounce.reset();
-                    canvas.drawRect(rect, mRectPaint);
-                    canvas.drawText(barcode.rawValue, rect.left, rect.bottom, mTextPaint);
-                }
-                break;
-
-*/
             case 5:  // Выходим в зону погрузки
                 if (bcPlace.equals(barcode.rawValue)) {
                     if (bounce.check(bcPlace)) { // Поймали
